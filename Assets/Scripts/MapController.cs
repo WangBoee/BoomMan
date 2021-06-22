@@ -149,7 +149,7 @@ public class MapController : MonoBehaviour
 
     public Vector2 GetEnemyPos()
     {
-        return new Vector2(-(X + 1), -Y-1);
+        return new Vector2(-(X + 1), -Y - 1);
     }
     //生成敌人
     private void CreateEnemy(int count)
