@@ -5,15 +5,20 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public int HP = 3; //玩家生命值
+    public GameObject bombPre; //普通炸弹预制体
+    private SpriteRenderer spriteRenderer;
+    private Color color;
     private Rigidbody2D rig;
     private Animator anim;//动画状态机
-    public GameObject bombPre;
     private float speed = 0.1f;
     // Use this for initialization
     void Awake()
     {
         anim = this.GetComponent<Animator>();
         rig = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        color = spriteRenderer.color;
     }
 
     // Update is called once per frame
@@ -40,5 +45,30 @@ public class PlayerController : MonoBehaviour
         anim.SetFloat("Horizontal", h);
         anim.SetFloat("Vertical", v);
         rig.MovePosition(transform.position + new Vector3(h, v) * speed);
+    }
+    //触发检测
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        //若玩家碰到敌人，生命值减一
+        if (col.CompareTag(Tag.Enemy))
+        {
+            HP--;
+            StartCoroutine("Injured", 2f);
+        }
+    }
+    //协程
+    //闪烁玩家人物
+    IEnumerator Injured(float time)
+    {
+        for (int i = 0; i < time * 2; i++)
+        {
+            color.a = 0.0f;
+            spriteRenderer.color = color;
+            yield return new WaitForSeconds(0.25f);
+            color.a = 1.0f;
+            spriteRenderer.color = color;
+            yield return new WaitForSeconds(0.25f);
+
+        }
     }
 }

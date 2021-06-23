@@ -73,6 +73,7 @@ public class Enemy : MonoBehaviour
                 Mathf.RoundToInt(transform.position.y));
             ChangeDir();
         }
+        //多个Enemy重叠时，设置半透明状态
         if (col.CompareTag(Tag.Enemy))
         {
             pcolor.a = 0.5f;
