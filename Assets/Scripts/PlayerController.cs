@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            GameObject bomb = GameObject.Instantiate(bombPre, transform);
+            GameObject bomb = GameObject.Instantiate(bombPre);
             bomb.transform.position = new Vector2(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y));
         }
     }
