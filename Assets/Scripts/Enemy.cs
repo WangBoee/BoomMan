@@ -79,6 +79,10 @@ public class Enemy : MonoBehaviour
             pcolor.a = 0.5f;
             sr.color = pcolor;
         }
+        if (col.CompareTag(Tag.BombEffect))
+        {
+            Destroy(this.gameObject);
+        }
     }
     //退出碰撞
     private void OnTriggerExit2D(Collider2D col)

@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D col)
     {
         //若玩家碰到敌人，生命值减一
-        if (col.CompareTag(Tag.Enemy))
+        if (col.CompareTag(Tag.Enemy) || col.CompareTag(Tag.BombEffect))
         {
             HP--;
             StartCoroutine("Injured", 2f);

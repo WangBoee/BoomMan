@@ -22,9 +22,10 @@ GameObject:
   - component: {fileID: 212669733135304476}
   - component: {fileID: 95052551168955740}
   - component: {fileID: 58640822272164160}
+  - component: {fileID: 114821491050290214}
   m_Layer: 0
   m_Name: BombEffect
-  m_TagString: Untagged
+  m_TagString: BombEffect
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -74,6 +75,17 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114821491050290214
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1855749910618064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94fcbc8210f3d5c4fa028c8d82d03c1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212669733135304476
 SpriteRenderer:
   m_ObjectHideFlags: 1
