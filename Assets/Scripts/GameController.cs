@@ -6,6 +6,7 @@ public class GameController : MonoBehaviour
 {
     public GameObject playerPre;//主角预制体
     public GameObject enemyPre;
+    private PlayerController playerController;
     private MapController mapController;
     public static GameController Instance;
     void Awake()
@@ -16,9 +17,11 @@ public class GameController : MonoBehaviour
     void Start()
     {
         mapController = this.GetComponent<MapController>();
+        playerController = this.GetComponent<PlayerController>();
         mapController.InitMap(8, 3, 20, 8);
         GameObject player = GameObject.Instantiate(playerPre);
         player.transform.position = mapController.GetPlayerPos();
+        playerController.Init(3, 1, 2); //初始化玩家
         //GameObject enemy = GameObject.Instantiate(enemyPre);
         //enemy.transform.position = mapController.GetEnemyPos();
     }
