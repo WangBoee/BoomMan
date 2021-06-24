@@ -120,13 +120,13 @@ public class Enemy : MonoBehaviour
         {
             dirList.Add(3);
         }
-        Debug.Log("可移动方向数量: " + dirList.Count);
+        //Debug.Log("可移动方向数量: " + dirList.Count);
         if (dirList.Count > 0)
         {
             locked = false;
             int index = Random.Range(0, dirList.Count);
             InitDir(dirList[index]);
-            Debug.Log("移动方向: " + dirList[index]);
+            //Debug.Log("移动方向: " + dirList[index]);
         }
         else
         {

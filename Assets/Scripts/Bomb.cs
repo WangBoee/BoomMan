@@ -29,7 +29,7 @@ public class Bomb : MonoBehaviour
         //暂停time秒
         yield return new WaitForSeconds(time);
         //延时结束，删除炸弹物体，生成爆炸特效
-        GameObject.Instantiate(bombEffect, transform.position, Quaternion.identity);
+        Destroy(Instantiate(bombEffect, transform.position, Quaternion.identity), 0.5f);
         Boom(Vector2.left); //向左延伸爆炸效果
         Boom(Vector2.right); //向右
         Boom(Vector2.up); //向上
@@ -43,9 +43,15 @@ public class Bomb : MonoBehaviour
         {
             //当前位置加上某个方向偏移量
             Vector2 pos = (Vector2)transform.position + dir * i;
+            //判断生成pos是否存在实体墙（不可销毁）
+            if (GameController.Instance.IsSuperWall(pos))
+            {
+                break;
+            }
             //实例化炸弹特效并设置位置
             GameObject bombEff = GameObject.Instantiate(bombEffect);
             bombEff.transform.position = pos;
+            Destroy(bombEff, 0.5f);
         }
     }
 }

@@ -12,6 +12,7 @@ public class MapController : MonoBehaviour
     public GameObject propPre;//道具预制体
     public GameObject enemyPre;//敌人预制体
     private List<Vector2> nullPointsList = new List<Vector2>();
+    private List<Vector2> superWallList = new List<Vector2>();
 
 
     //Awake和start函数一样，但前者比后者先调用
@@ -72,6 +73,7 @@ public class MapController : MonoBehaviour
     //生成实体墙
     private void SpwanSuperWall(Vector2 pos)
     {
+        superWallList.Add(pos);
         GameObject superWall = GameObject.Instantiate(superWallPre, transform);
         superWall.transform.position = pos;
     }
@@ -161,5 +163,9 @@ public class MapController : MonoBehaviour
             enemy.transform.position = nullPointsList[index];
             nullPointsList.RemoveAt(index);
         }
+    }
+    public bool IsSuperWall(Vector2 pos)
+    {
+        return superWallList.Contains(pos);
     }
 }
