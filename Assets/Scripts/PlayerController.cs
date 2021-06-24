@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
         {
             GameObject bomb = GameObject.Instantiate(bombPre);
             bomb.transform.position = new Vector2(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y));
+            bomb.GetComponent<Bomb>().Init(1, 2); //调用Bomb类中Init初始化炸弹特效
         }
     }
 
@@ -68,7 +69,6 @@ public class PlayerController : MonoBehaviour
             color.a = 1.0f;
             spriteRenderer.color = color;
             yield return new WaitForSeconds(0.25f);
-
         }
     }
 }
