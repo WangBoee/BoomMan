@@ -16,12 +16,12 @@ public class GameController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        mapController = this.GetComponent<MapController>();
-        playerController = this.GetComponent<PlayerController>();
+        mapController = GetComponent<MapController>();
         mapController.InitMap(8, 3, 20, 8);
         GameObject player = GameObject.Instantiate(playerPre);
         player.transform.position = mapController.GetPlayerPos();
-        playerController.Init(3, 1, 2); //初始化玩家
+        playerController = player.GetComponent<PlayerController>();
+        playerController.Init(3, 2, 2.0f); //初始化玩家
         //GameObject enemy = GameObject.Instantiate(enemyPre);
         //enemy.transform.position = mapController.GetEnemyPos();
     }
@@ -31,9 +31,15 @@ public class GameController : MonoBehaviour
     {
 
     }
+    //判断是否为实体墙及其他墙体
     //使其他脚本能调用
     public bool IsSuperWall(Vector2 pos)
     {
         return mapController.IsSuperWall(pos);
+    }
+
+    public bool IsWall(Vector2 pos)
+    {
+        return mapController.IsWall(pos);
     }
 }

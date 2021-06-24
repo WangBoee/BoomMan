@@ -13,7 +13,7 @@ public class MapController : MonoBehaviour
     public GameObject enemyPre;//敌人预制体
     private List<Vector2> nullPointsList = new List<Vector2>();
     private List<Vector2> superWallList = new List<Vector2>();
-
+    private List<Vector2> wallList = new List<Vector2>();
 
     //Awake和start函数一样，但前者比后者先调用
 
@@ -109,6 +109,7 @@ public class MapController : MonoBehaviour
     //创建可销毁的墙
     private void CreateWall1(int wallCount)
     {
+        
         if (wallCount >= nullPointsList.Count)//作用：避免数组越界
         {
             wallCount = (int)(nullPointsList.Count * 0.7f);
@@ -118,6 +119,7 @@ public class MapController : MonoBehaviour
             int index = Random.Range(0, nullPointsList.Count);
             GameObject wall = GameObject.Instantiate(wallPre, transform);
             wall.transform.position = nullPointsList[index];
+            wallList.Add((Vector2)wall.transform.position);
             nullPointsList.RemoveAt(index);//把当前生成可销毁的墙的空结点移给
         }
     }
@@ -127,6 +129,7 @@ public class MapController : MonoBehaviour
         int index = Random.Range(0, nullPointsList.Count);//随机出门的位置
         GameObject door = GameObject.Instantiate(doorPre, transform);
         door.transform.position = nullPointsList[index];
+        wallList.Add((Vector2)door.transform.position);
         nullPointsList.RemoveAt(index);
     }
 
@@ -139,6 +142,7 @@ public class MapController : MonoBehaviour
             int index = Random.Range(0, nullPointsList.Count);//随机出道具位置
             GameObject prop = GameObject.Instantiate(propPre, transform);
             prop.transform.position = nullPointsList[index];
+            wallList.Add((Vector2)prop.transform.position);
             nullPointsList.RemoveAt(index);//把当前生成可销毁的墙的空结点移给
         }
     }
@@ -167,5 +171,9 @@ public class MapController : MonoBehaviour
     public bool IsSuperWall(Vector2 pos)
     {
         return superWallList.Contains(pos);
+    }
+    public bool IsWall(Vector2 pos)
+    {
+        return wallList.Contains(pos);
     }
 }

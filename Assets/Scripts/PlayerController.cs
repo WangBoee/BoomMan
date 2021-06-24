@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     public int HP = 3; //玩家生命值
     public GameObject bombPre; //普通炸弹预制体
-    public int boomRange; //炸弹爆炸范围
+    private int boomRange; //炸弹爆炸范围
     private Animator anim;//动画状态机
     private float speed = 0.1f; //玩家移动速度
     private bool isInjured = false; //标识玩家是否收到伤害

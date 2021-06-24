@@ -48,6 +48,14 @@ public class Bomb : MonoBehaviour
             {
                 break;
             }
+            if (GameController.Instance.IsWall(pos))
+            {
+                //实例化炸弹特效并设置位置
+                GameObject bEff = GameObject.Instantiate(bombEffect);
+                bEff.transform.position = pos;
+                Destroy(bEff, 0.5f);
+                break;
+            }
             //实例化炸弹特效并设置位置
             GameObject bombEff = GameObject.Instantiate(bombEffect);
             bombEff.transform.position = pos;

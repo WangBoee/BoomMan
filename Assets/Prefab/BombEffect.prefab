@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 95052551168955740}
   - component: {fileID: 58640822272164160}
   - component: {fileID: 114821491050290214}
+  - component: {fileID: 50501340289079292}
   m_Layer: 0
   m_Name: BombEffect
   m_TagString: BombEffect
@@ -43,6 +44,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &50501340289079292
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1855749910618064}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!58 &58640822272164160
 CircleCollider2D:
   m_ObjectHideFlags: 1
