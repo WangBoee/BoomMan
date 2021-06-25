@@ -29,13 +29,22 @@ public class MapController : MonoBehaviour
     {
         X = x;
         Y = y;
+        foreach (Transform item in transform)
+        {
+            Destroy(item.gameObject);
+        }
+        Debug.Log("init map");
+        //每次生成地图清空之前地图数据
+        nullPointsList.Clear();
+        wallList.Clear();
+        superWallList.Clear();
+        //生成地图
         CreateSuperWall();
         FindNullPoint();
         CreateWall1(wallCount);
         CreateDoor();
         CreateProp();
         CreateEnemy(enemyCount);
-        //Debug.Log(nullPointsList.Count);
     }
 
     //生成实体墙
@@ -109,7 +118,7 @@ public class MapController : MonoBehaviour
     //创建可销毁的墙
     private void CreateWall1(int wallCount)
     {
-        
+
         if (wallCount >= nullPointsList.Count)//作用：避免数组越界
         {
             wallCount = (int)(nullPointsList.Count * 0.7f);

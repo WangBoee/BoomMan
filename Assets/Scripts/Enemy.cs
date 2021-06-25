@@ -81,6 +81,7 @@ public class Enemy : MonoBehaviour
         }
         if (col.CompareTag(Tag.BombEffect))
         {
+            GameController.Instance.SetEnemyCounts();
             Destroy(this.gameObject);
         }
     }

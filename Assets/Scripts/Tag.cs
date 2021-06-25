@@ -8,4 +8,5 @@ public class Tag
     public const string Wall = "Wall";
     public const string Enemy = "Enemy";
     public const string BombEffect = "BombEffect";
+    public const string Player = "Player";
 }

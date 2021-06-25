@@ -8,6 +8,9 @@ public class GameController : MonoBehaviour
     public GameObject enemyPre;
     private PlayerController playerController;
     private MapController mapController;
+    private int levelCount = 0; //关卡数
+    private int enemyCount = 0; //敌人数量
+    private GameObject player; //主角
     public static GameController Instance;
     void Awake()
     {
@@ -16,20 +19,15 @@ public class GameController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        mapController = GetComponent<MapController>();
-        mapController.InitMap(8, 3, 20, 8);
-        GameObject player = GameObject.Instantiate(playerPre);
-        player.transform.position = mapController.GetPlayerPos();
-        playerController = player.GetComponent<PlayerController>();
-        playerController.Init(3, 2, 2.0f); //初始化玩家
-        //GameObject enemy = GameObject.Instantiate(enemyPre);
-        //enemy.transform.position = mapController.GetEnemyPos();
+        //LevelController();
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        LevelController();
+        Debug.Log("level: " + levelCount);
+        Debug.Log("Enemy: " + enemyCount);
     }
     //判断是否为实体墙及其他墙体
     //使其他脚本能调用
@@ -37,9 +35,56 @@ public class GameController : MonoBehaviour
     {
         return mapController.IsSuperWall(pos);
     }
-
     public bool IsWall(Vector2 pos)
     {
         return mapController.IsWall(pos);
+    }
+    public void SetEnemyCounts()
+    {
+        enemyCount--;
+        if (enemyCount < 0)
+        {
+            enemyCount = 0;
+        }
+    }
+
+    public int GetEnemyCounts()
+    {
+        return enemyCount;
+    }
+    private void LevelController()
+    {
+        if (enemyCount == 0)
+        {
+            //每三关放大一次地图
+            int x = 6 + 2 * (levelCount / 3);
+            int y = 3 + 2 * (levelCount / 3);
+            //设置地图上限
+            if (x > 18)
+            {
+                x = 18;
+            }
+            if (y > 15)
+            {
+                y = 15;
+            }
+            enemyCount = 1 + (int)(levelCount * 1.5); //敌人数量
+            //设置敌人数量上限
+            if (enemyCount > 10)
+            {
+                enemyCount = 40;
+            }
+            mapController = GetComponent<MapController>();
+            mapController.InitMap(x, y, x * y, enemyCount); //初始化地图
+            //判断玩家是否第一次生成
+            if (null == player)
+            {
+                player = GameObject.Instantiate(playerPre);
+                playerController = player.GetComponent<PlayerController>();
+                playerController.Init(3, 2, 2.0f); //初始化玩家
+            }
+            levelCount++; //关卡递增
+            player.transform.position = mapController.GetPlayerPos();
+        }
     }
 }
