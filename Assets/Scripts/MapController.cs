@@ -4,13 +4,10 @@ using UnityEngine;
 
 public class MapController : MonoBehaviour
 {
-
+    public Sprite wallSprite;   //获取墙体图片
     public int X, Y;//X行 Y列
-    public GameObject superWallPre;//实体墙预制体
-    public GameObject wallPre;//可销毁的墙预制体
     public GameObject doorPre;//门的预制体
-    public GameObject propPre;//道具预制体
-    public GameObject enemyPre;//敌人预制体
+    private GameObject door;
     private List<Vector2> nullPointsList = new List<Vector2>();
     private List<Vector2> superWallList = new List<Vector2>();
     private List<Vector2> wallList = new List<Vector2>();
@@ -83,8 +80,7 @@ public class MapController : MonoBehaviour
     private void SpwanSuperWall(Vector2 pos)
     {
         superWallList.Add(pos);
-        GameObject superWall = GameObject.Instantiate(superWallPre, transform);
-        superWall.transform.position = pos;
+        ObjPool.Instace.GetObj(ObjectType.SuperWall, pos);
     }
 
     //查找地图中所有的空点
@@ -126,17 +122,20 @@ public class MapController : MonoBehaviour
         for (int i = 0; i < wallCount; i++)
         {
             int index = Random.Range(0, nullPointsList.Count);
-            GameObject wall = GameObject.Instantiate(wallPre, transform);
-            wall.transform.position = nullPointsList[index];
-            wallList.Add((Vector2)wall.transform.position);
+            ObjPool.Instace.GetObj(ObjectType.Wall, nullPointsList[index]);
+            wallList.Add(nullPointsList[index]);
             nullPointsList.RemoveAt(index);//把当前生成可销毁的墙的空结点移给
         }
     }
     //创建门
     private void CreateDoor()
     {
+        if (null == door)
+        {
+            door = GameObject.Instantiate(doorPre);
+        }
+        door.GetComponent<SpriteRenderer>().sprite = wallSprite;
         int index = Random.Range(0, nullPointsList.Count);//随机出门的位置
-        GameObject door = GameObject.Instantiate(doorPre, transform);
         door.transform.position = nullPointsList[index];
         wallList.Add((Vector2)door.transform.position);
         nullPointsList.RemoveAt(index);
@@ -149,9 +148,7 @@ public class MapController : MonoBehaviour
         for (int i = 0; i < count; i++)
         {
             int index = Random.Range(0, nullPointsList.Count);//随机出道具位置
-            GameObject prop = GameObject.Instantiate(propPre, transform);
-            prop.transform.position = nullPointsList[index];
-            wallList.Add((Vector2)prop.transform.position);
+            ObjPool.Instace.GetObj(ObjectType.Prop, nullPointsList[index]);
             nullPointsList.RemoveAt(index);//把当前生成可销毁的墙的空结点移给
         }
     }
@@ -172,8 +169,7 @@ public class MapController : MonoBehaviour
         for (int i = 0; i < count; i++)
         {
             int index = Random.Range(0, nullPointsList.Count);
-            GameObject enemy = GameObject.Instantiate(enemyPre, transform);
-            enemy.transform.position = nullPointsList[index];
+            ObjPool.Instace.GetObj(ObjectType.Enemy, nullPointsList[index]);
             nullPointsList.RemoveAt(index);
         }
     }

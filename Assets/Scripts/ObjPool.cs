@@ -18,14 +18,14 @@ public class ObjPool : MonoBehaviour
     private Dictionary<ObjectType, List<GameObject>> dic = new Dictionary<ObjectType, List<GameObject>>();
     //让物体枚举类型和预制体进行对应
     public List<TypePrefab> typePrefabs = new List<TypePrefab>();
-    public static ObjPool instace; //对象池的单实例
+    public static ObjPool Instace; //对象池的单实例
 
     void Awake()
     {
-        instace = this;
+        Instace = this;
     }
-    //从对象池中获取对象
-    public GameObject GetObj(ObjectType type)
+    //从对象池中获取对象，并且设置位置
+    public GameObject GetObj(ObjectType type, Vector2 pos)
     {
         GameObject temp = null;
         //判断字典中有无该类型对象
@@ -33,27 +33,26 @@ public class ObjPool : MonoBehaviour
         {
             dic.Add(type, new List<GameObject>());
         }
+        //判断该类型对象池中有无物体
+        if (dic[type].Count > 0)
+        {
+            //获取最后一个对象
+            int index = dic[type].Count - 1;
+            temp = dic[type][index];
+            dic[type].RemoveAt(index); //从对象池中移除该对象
+        }
         else
         {
-            //判断该类型对象池中有无物体
-            if (dic[type].Count > 0)
+            //若对象池中不存在物体则实例化对象
+            GameObject prefab = GetPrefabType(type);
+            if (prefab != null)
             {
-                //获取最后一个对象
-                int index = dic[type].Count - 1;
-                temp = dic[type][index];
-                dic[type].RemoveAt(index); //从对象池中移除该对象
-            }
-            else
-            {
-                //若对象池中不存在物体则实例化对象
-                GameObject prefab = GetPrefabType(type);
-                if (prefab != null)
-                {
-                    temp = Instantiate(prefab, transform);
-                }
+                temp = Instantiate(prefab, transform);
             }
         }
         temp.SetActive(true);
+        temp.transform.position = pos;
+        temp.transform.rotation = Quaternion.identity;
         return temp;
     }
 
