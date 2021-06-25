@@ -19,15 +19,13 @@ public class GameController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        //LevelController();
+        LevelController();
     }
 
     // Update is called once per frame
     void Update()
     {
         LevelController();
-        Debug.Log("level: " + levelCount);
-        Debug.Log("Enemy: " + enemyCount);
     }
     //判断是否为实体墙及其他墙体
     //使其他脚本能调用

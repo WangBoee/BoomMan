@@ -123,6 +123,7 @@ GameObject:
   - component: {fileID: 160632758}
   - component: {fileID: 160632757}
   - component: {fileID: 160632759}
+  - component: {fileID: 160632760}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -175,6 +176,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPre: {fileID: 1888314473923378, guid: 39ca87eeaa63266498a34683874557c5, type: 2}
   enemyPre: {fileID: 1473224915260146, guid: 60655ef43e33e40449c3b5be5a464df7, type: 2}
+--- !u!114 &160632760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 160632756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df7f3dc48864fd346b2297fe55813437, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  typePrefabs:
+  - prefab: {fileID: 1730800809752088, guid: 0c44d2def0ed0954696d6db801b5ae8d, type: 2}
+    type: 0
+  - prefab: {fileID: 1068770790774226, guid: f410804163026e840916b30afb1876b2, type: 2}
+    type: 1
+  - prefab: {fileID: 1855749910618064, guid: ec1664c40d273e74a977a15fc09c8cd8, type: 2}
+    type: 5
+  - prefab: {fileID: 1473224915260146, guid: 60655ef43e33e40449c3b5be5a464df7, type: 2}
+    type: 4
+  - prefab: {fileID: 1766128827868212, guid: d3a5fd2931c57b9439e1e969a4fe4f8c, type: 2}
+    type: 3
+  - prefab: {fileID: 1288454571550158, guid: b8a4ee9a86b302e4b863f75c1163b221, type: 2}
+    type: 2
 --- !u!1 &2012168749
 GameObject:
   m_ObjectHideFlags: 0
