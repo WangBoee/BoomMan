@@ -193,6 +193,7 @@ public class MapController : MonoBehaviour
         {
             int index = Random.Range(0, nullPointsList.Count);
             GameObject enemy = ObjPool.Instace.GetObj(ObjectType.Enemy, nullPointsList[index]);
+            enemy.GetComponent<Enemy>().Init();
             if (!poolObjDic.ContainsKey(ObjectType.Enemy))
             {
                 poolObjDic.Add(ObjectType.Enemy, new List<GameObject>());

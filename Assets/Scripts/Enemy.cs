@@ -12,11 +12,16 @@ public class Enemy : MonoBehaviour
     private Color pcolor; //图片原颜色
     private SpriteRenderer sr = null; //获取精灵渲染器
     private bool locked = false; //敌人是否被困住，默认假设未被困住
-
+    private bool isDied = false; //敌人是否被炸掉
+    public void Init()
+    {
+        pcolor.a = 1;
+        sr.color = pcolor;
+        InitDir(Random.Range(0, 4));
+        isDied = false;
+    }
     void Awake()
     {
-        dirID = Random.Range(0, 4);
-        InitDir(dirID);
         rig = this.GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         pcolor = sr.color;
@@ -81,9 +86,13 @@ public class Enemy : MonoBehaviour
         }
         if (col.CompareTag(Tag.BombEffect))
         {
-            GameController.Instance.SetEnemyCounts();
-            //Destroy(this.gameObject);
-            ObjPool.Instace.AddObj(ObjectType.Enemy, gameObject);
+            if (!isDied)
+            {
+                GameController.Instance.SetEnemyCounts();
+                //Destroy(this.gameObject);
+                ObjPool.Instace.AddObj(ObjectType.Enemy, gameObject);
+                isDied = true;
+            }
         }
     }
     //退出碰撞
