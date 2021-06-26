@@ -11,7 +11,7 @@ public class MapController : MonoBehaviour
     private List<Vector2> nullPointsList = new List<Vector2>();
     private List<Vector2> superWallList = new List<Vector2>();
     private List<Vector2> wallList = new List<Vector2>();
-
+    private Dictionary<ObjectType, List<GameObject>> poolObjDic = new Dictionary<ObjectType, List<GameObject>>(); //保存从对象池中取出的对象
     //Awake和start函数一样，但前者比后者先调用
 
 
@@ -20,21 +20,29 @@ public class MapController : MonoBehaviour
     {
 
     }
-    //初始化地图
-
-    public void InitMap(int x, int y, int wallCount, int enemyCount)
+    //清除地图(回收)
+    private void Recovery()
     {
-        X = x;
-        Y = y;
-        foreach (Transform item in transform)
-        {
-            Destroy(item.gameObject);
-        }
-        Debug.Log("init map");
         //每次生成地图清空之前地图数据
         nullPointsList.Clear();
         wallList.Clear();
         superWallList.Clear();
+        //回收实例化对象到对象池
+        foreach (var item in poolObjDic)
+        {
+            foreach (var obj in item.Value)
+            {
+                ObjPool.Instace.AddObj(item.Key, obj);
+            }
+        }
+    }
+    //初始化地图
+    public void InitMap(int x, int y, int wallCount, int enemyCount)
+    {
+        X = x;
+        Y = y;
+        Recovery();
+        Debug.Log("init map");
         //生成地图
         CreateSuperWall();
         FindNullPoint();
@@ -80,7 +88,12 @@ public class MapController : MonoBehaviour
     private void SpwanSuperWall(Vector2 pos)
     {
         superWallList.Add(pos);
-        ObjPool.Instace.GetObj(ObjectType.SuperWall, pos);
+        GameObject superwall = ObjPool.Instace.GetObj(ObjectType.SuperWall, pos);
+        if (!poolObjDic.ContainsKey(ObjectType.SuperWall))
+        {
+            poolObjDic.Add(ObjectType.SuperWall, new List<GameObject>());
+        }
+        poolObjDic[ObjectType.SuperWall].Add(superwall);
     }
 
     //查找地图中所有的空点
@@ -122,7 +135,12 @@ public class MapController : MonoBehaviour
         for (int i = 0; i < wallCount; i++)
         {
             int index = Random.Range(0, nullPointsList.Count);
-            ObjPool.Instace.GetObj(ObjectType.Wall, nullPointsList[index]);
+            GameObject wall = ObjPool.Instace.GetObj(ObjectType.Wall, nullPointsList[index]);
+            if (!poolObjDic.ContainsKey(ObjectType.Wall))
+            {
+                poolObjDic.Add(ObjectType.Wall, new List<GameObject>());
+            }
+            poolObjDic[ObjectType.Wall].Add(wall);
             wallList.Add(nullPointsList[index]);
             nullPointsList.RemoveAt(index);//把当前生成可销毁的墙的空结点移给
         }
@@ -148,7 +166,12 @@ public class MapController : MonoBehaviour
         for (int i = 0; i < count; i++)
         {
             int index = Random.Range(0, nullPointsList.Count);//随机出道具位置
-            ObjPool.Instace.GetObj(ObjectType.Prop, nullPointsList[index]);
+            GameObject prop = ObjPool.Instace.GetObj(ObjectType.Prop, nullPointsList[index]);
+            if (!poolObjDic.ContainsKey(ObjectType.Prop))
+            {
+                poolObjDic.Add(ObjectType.Prop, new List<GameObject>());
+            }
+            poolObjDic[ObjectType.Prop].Add(prop);
             nullPointsList.RemoveAt(index);//把当前生成可销毁的墙的空结点移给
         }
     }
@@ -169,7 +192,12 @@ public class MapController : MonoBehaviour
         for (int i = 0; i < count; i++)
         {
             int index = Random.Range(0, nullPointsList.Count);
-            ObjPool.Instace.GetObj(ObjectType.Enemy, nullPointsList[index]);
+            GameObject enemy = ObjPool.Instace.GetObj(ObjectType.Enemy, nullPointsList[index]);
+            if (!poolObjDic.ContainsKey(ObjectType.Enemy))
+            {
+                poolObjDic.Add(ObjectType.Enemy, new List<GameObject>());
+            }
+            poolObjDic[ObjectType.Enemy].Add(enemy);
             nullPointsList.RemoveAt(index);
         }
     }
