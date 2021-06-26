@@ -42,9 +42,17 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            GameObject bomb = GameObject.Instantiate(bombPre);
-            bomb.transform.position = new Vector2(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y));
-            bomb.GetComponent<Bomb>().Init(boomRange, boomTime); //调用Bomb类中Init初始化炸弹特效
+            Vector2 pos = new Vector2(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y));
+            GameObject bomb = ObjPool.Instace.GetObj(ObjectType.Bomb, pos);
+            if (bomb != null)
+            {
+                //GameObject bomb = GameObject.Instantiate(bombPre);
+                bomb.GetComponent<Bomb>().Init(boomRange, boomTime); //调用Bomb类中Init初始化炸弹特效
+            }
+            else
+            {
+                Debug.LogError("bomb is null");
+            }
         }
     }
 

@@ -12,8 +12,6 @@ public class MapController : MonoBehaviour
     private List<Vector2> superWallList = new List<Vector2>();
     private List<Vector2> wallList = new List<Vector2>();
     private Dictionary<ObjectType, List<GameObject>> poolObjDic = new Dictionary<ObjectType, List<GameObject>>(); //保存从对象池中取出的对象
-    //Awake和start函数一样，但前者比后者先调用
-
 
     // Update is called once per frame
     void Update()
@@ -209,5 +207,14 @@ public class MapController : MonoBehaviour
     public bool IsWall(Vector2 pos)
     {
         return wallList.Contains(pos);
+    }
+    //将外部实例添加到对象池字典
+    public void Add2ObjPool(ObjectType type, GameObject go)
+    {
+        if (!poolObjDic.ContainsKey(type))
+        {
+            poolObjDic.Add(type, new List<GameObject>());
+        }
+        poolObjDic[type].Add(go);
     }
 }
