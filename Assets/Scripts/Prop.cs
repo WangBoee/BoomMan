@@ -92,6 +92,7 @@ public class Prop : MonoBehaviour
         GetComponent<BoxCollider2D>().isTrigger = false;
         this.gameObject.tag = Tag.Wall;
         this.gameObject.layer = 8;
+        GetComponent<SpriteRenderer>().sprite = wallSprite;
     }
     //动画
     IEnumerator PropAnim()
