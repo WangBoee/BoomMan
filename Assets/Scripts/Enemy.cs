@@ -71,7 +71,6 @@ public class Enemy : MonoBehaviour
     //碰撞条件
     private void OnTriggerEnter2D(Collider2D col)
     {
-        //Debug.LogError("碰撞"); //debug
         if (col.CompareTag(Tag.SuperWall) || col.CompareTag(Tag.Wall))
         {
             transform.position = new Vector2(Mathf.RoundToInt(transform.position.x),
@@ -89,7 +88,6 @@ public class Enemy : MonoBehaviour
             if (!isDied)
             {
                 GameController.Instance.SetEnemyCounts();
-                //Destroy(this.gameObject);
                 ObjPool.Instance.AddObj(ObjectType.Enemy, gameObject);
                 isDied = true;
             }

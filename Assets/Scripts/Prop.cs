@@ -24,6 +24,7 @@ public class Prop : MonoBehaviour
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        GetComponent<SpriteRenderer>().sprite = wallSprite;
     }
 
     // Update is called once per frame
@@ -44,6 +45,7 @@ public class Prop : MonoBehaviour
             spriteRenderer.sprite = propTypeSprite[index].sprite;
             propType = propTypeSprite[index].propType;
             isBombed = true;
+            StartCoroutine(PropAnim());
         }
         //玩家人物触碰到道具
         if (col.CompareTag(Tag.Player))
@@ -74,12 +76,29 @@ public class Prop : MonoBehaviour
                 default:
                     break;
             }
-            //回收到对象池
-            this.gameObject.tag = Tag.Wall;
-            this.gameObject.layer = 1;
-            GetComponent<SpriteRenderer>().sprite = wallSprite;
-            isBombed = false;
-            ObjPool.Instance.AddObj(ObjectType.Prop, this.gameObject);
+            //重置
+            DestroyProp();
+        }
+    }
+    //重置道具数据
+    private void DestroyProp()
+    {
+        isBombed = false;
+        GetComponent<BoxCollider2D>().isTrigger = false;
+        this.gameObject.tag = Tag.Wall;
+        this.gameObject.layer = 8;
+        //回收到对象池
+        ObjPool.Instance.AddObj(ObjectType.Prop, gameObject);
+    }
+    //动画
+    IEnumerator PropAnim()
+    {
+        for (int i = 0; i < 2; i++)
+        {
+            spriteRenderer.color = Color.gray;
+            yield return new WaitForSeconds(0.25f);
+            spriteRenderer.color = Color.white;
+            yield return new WaitForSeconds(0.25f);
         }
     }
 }
