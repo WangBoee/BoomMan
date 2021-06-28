@@ -8,10 +8,11 @@ public class Bomb : MonoBehaviour
     private int bombRange; //爆炸范围
     public GameObject bombEffect; //爆炸特效
     private Action onFinAction;
-    public void Init(int bRange, float time)
+    public void Init(int bRange, float time, Action action)
     {
         this.bombRange = bRange;
         StartCoroutine("DelayBoom", time);
+        onFinAction = action;
     }
     // Use this for initialization
     void Start()
@@ -29,6 +30,10 @@ public class Bomb : MonoBehaviour
     {
         //暂停time秒
         yield return new WaitForSeconds(time);
+        if (onFinAction != null)
+        {
+            onFinAction();
+        }
         //延时结束，删除炸弹物体，生成爆炸特效
         //Destroy(Instantiate(bombEffect, transform.position, Quaternion.identity), 0.5f);
         GameObject bombEffect = ObjPool.Instance.GetObj(ObjectType.BombEffect, transform.position);

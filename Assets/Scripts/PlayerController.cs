@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Color color;
     private Rigidbody2D rig;
+    private int bombCount = 1;
     // Use this for initialization
     void Awake()
     {
@@ -40,22 +41,30 @@ public class PlayerController : MonoBehaviour
     }
     private void Bomb()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && bombCount != 0)
         {
             Vector2 pos = new Vector2(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y));
             GameObject bomb = ObjPool.Instance.GetObj(ObjectType.Bomb, pos);
             if (bomb != null)
             {
                 //GameObject bomb = GameObject.Instantiate(bombPre);
-                bomb.GetComponent<Bomb>().Init(boomRange, boomTime); //调用Bomb类中Init初始化炸弹特效
+                //一般调用方法
+                //bomb.GetComponent<Bomb>().Init(boomRange, boomTime, OnFinAction); //调用Bomb类中Init初始化炸弹特效
+                //匿名函数，lambda 表达式
+                bomb.GetComponent<Bomb>().Init(boomRange, boomTime, () => { bombCount++; });
             }
             else
             {
                 Debug.LogError("bomb is null");
             }
+            bombCount--;
         }
     }
-
+    //一般调用方法
+    //void OnFinAction()
+    //{
+    //    bombCount++;
+    //}
     private void Move()
     {
         float h = Input.GetAxis("Horizontal");//水平方向
