@@ -90,7 +90,7 @@ public class Enemy : MonoBehaviour
             {
                 GameController.Instance.SetEnemyCounts();
                 //Destroy(this.gameObject);
-                ObjPool.Instace.AddObj(ObjectType.Enemy, gameObject);
+                ObjPool.Instance.AddObj(ObjectType.Enemy, gameObject);
                 isDied = true;
             }
         }

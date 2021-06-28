@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Vector2 pos = new Vector2(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y));
-            GameObject bomb = ObjPool.Instace.GetObj(ObjectType.Bomb, pos);
+            GameObject bomb = ObjPool.Instance.GetObj(ObjectType.Bomb, pos);
             if (bomb != null)
             {
                 //GameObject bomb = GameObject.Instantiate(bombPre);

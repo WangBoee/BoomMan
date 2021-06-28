@@ -30,7 +30,7 @@ public class MapController : MonoBehaviour
         {
             foreach (var obj in item.Value)
             {
-                ObjPool.Instace.AddObj(item.Key, obj);
+                ObjPool.Instance.AddObj(item.Key, obj);
             }
         }
     }
@@ -86,7 +86,7 @@ public class MapController : MonoBehaviour
     private void SpwanSuperWall(Vector2 pos)
     {
         superWallList.Add(pos);
-        GameObject superwall = ObjPool.Instace.GetObj(ObjectType.SuperWall, pos);
+        GameObject superwall = ObjPool.Instance.GetObj(ObjectType.SuperWall, pos);
         if (!poolObjDic.ContainsKey(ObjectType.SuperWall))
         {
             poolObjDic.Add(ObjectType.SuperWall, new List<GameObject>());
@@ -133,7 +133,7 @@ public class MapController : MonoBehaviour
         for (int i = 0; i < wallCount; i++)
         {
             int index = Random.Range(0, nullPointsList.Count);
-            GameObject wall = ObjPool.Instace.GetObj(ObjectType.Wall, nullPointsList[index]);
+            GameObject wall = ObjPool.Instance.GetObj(ObjectType.Wall, nullPointsList[index]);
             if (!poolObjDic.ContainsKey(ObjectType.Wall))
             {
                 poolObjDic.Add(ObjectType.Wall, new List<GameObject>());
@@ -164,7 +164,7 @@ public class MapController : MonoBehaviour
         for (int i = 0; i < count; i++)
         {
             int index = Random.Range(0, nullPointsList.Count);//随机出道具位置
-            GameObject prop = ObjPool.Instace.GetObj(ObjectType.Prop, nullPointsList[index]);
+            GameObject prop = ObjPool.Instance.GetObj(ObjectType.Prop, nullPointsList[index]);
             if (!poolObjDic.ContainsKey(ObjectType.Prop))
             {
                 poolObjDic.Add(ObjectType.Prop, new List<GameObject>());
@@ -190,7 +190,7 @@ public class MapController : MonoBehaviour
         for (int i = 0; i < count; i++)
         {
             int index = Random.Range(0, nullPointsList.Count);
-            GameObject enemy = ObjPool.Instace.GetObj(ObjectType.Enemy, nullPointsList[index]);
+            GameObject enemy = ObjPool.Instance.GetObj(ObjectType.Enemy, nullPointsList[index]);
             enemy.GetComponent<Enemy>().Init();
             if (!poolObjDic.ContainsKey(ObjectType.Enemy))
             {

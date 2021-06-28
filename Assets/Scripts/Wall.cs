@@ -23,7 +23,7 @@ public class Wall : MonoBehaviour
         if (col.CompareTag(Tag.BombEffect))
         {
             //Destroy(this.gameObject);
-            ObjPool.Instace.AddObj(ObjectType.Wall, gameObject);
+            ObjPool.Instance.AddObj(ObjectType.Wall, gameObject);
         }
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    public Sprite doorSprite;   //用与获取门的图片
+    public Sprite doorSprite;   //用于获取门的图片
     private SpriteRenderer spriteRenderer;
     // Use this for initialization
     void Start()

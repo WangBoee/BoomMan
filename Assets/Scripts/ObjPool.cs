@@ -18,11 +18,11 @@ public class ObjPool : MonoBehaviour
     private Dictionary<ObjectType, List<GameObject>> dic = new Dictionary<ObjectType, List<GameObject>>();
     //让物体枚举类型和预制体进行对应
     public List<TypePrefab> typePrefabs = new List<TypePrefab>();
-    public static ObjPool Instace; //对象池的单实例
+    public static ObjPool Instance; //对象池的单实例
 
     void Awake()
     {
-        Instace = this;
+        Instance = this;
     }
     //从对象池中获取对象，并且设置位置
     public GameObject GetObj(ObjectType type, Vector2 pos)

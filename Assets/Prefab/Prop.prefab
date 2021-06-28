@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4977125212240768}
   - component: {fileID: 212711982365485746}
   - component: {fileID: 61995739936006512}
+  - component: {fileID: 114750278132600158}
   m_Layer: 0
   m_Name: Prop
   m_TagString: Wall
@@ -66,6 +67,29 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.32, y: 0.32}
   m_EdgeRadius: 0
+--- !u!114 &114750278132600158
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1288454571550158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d79838907d252c646a7ddcde7cfd584e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wallSprite: {fileID: 21300000, guid: 2269c5e106f947345818765e14689a34, type: 3}
+  propTypeSprite:
+  - propType: 0
+    sprite: {fileID: 21300004, guid: 85eabaa4d070a1d4ca7aecca57abd52b, type: 3}
+  - propType: 1
+    sprite: {fileID: 21300008, guid: 85eabaa4d070a1d4ca7aecca57abd52b, type: 3}
+  - propType: 2
+    sprite: {fileID: 21300002, guid: 85eabaa4d070a1d4ca7aecca57abd52b, type: 3}
+  - propType: 3
+    sprite: {fileID: 21300000, guid: 85eabaa4d070a1d4ca7aecca57abd52b, type: 3}
+  - propType: 4
+    sprite: {fileID: 21300006, guid: 85eabaa4d070a1d4ca7aecca57abd52b, type: 3}
 --- !u!212 &212711982365485746
 SpriteRenderer:
   m_ObjectHideFlags: 1
