@@ -30,7 +30,10 @@ public class Prop : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        //if (GameController.Instance.GetEnemyCounts() == 0)
+        //{
+        //    DestroyProp();
+        //}
     }
     private void OnTriggerEnter2D(Collider2D col)
     {
@@ -77,18 +80,18 @@ public class Prop : MonoBehaviour
                     break;
             }
             //重置
-            DestroyProp();
+            ResetProp();
+            //回收到对象池
+            ObjPool.Instance.AddObj(ObjectType.Prop, gameObject);
         }
     }
     //重置道具数据
-    private void DestroyProp()
+    public void ResetProp()
     {
         isBombed = false;
         GetComponent<BoxCollider2D>().isTrigger = false;
         this.gameObject.tag = Tag.Wall;
         this.gameObject.layer = 8;
-        //回收到对象池
-        ObjPool.Instance.AddObj(ObjectType.Prop, gameObject);
     }
     //动画
     IEnumerator PropAnim()

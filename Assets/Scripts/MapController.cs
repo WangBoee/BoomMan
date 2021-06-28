@@ -11,6 +11,7 @@ public class MapController : MonoBehaviour
     private List<Vector2> nullPointsList = new List<Vector2>();
     private List<Vector2> superWallList = new List<Vector2>();
     private List<Vector2> wallList = new List<Vector2>();
+    private List<GameObject> propList = new List<GameObject>();
     private Dictionary<ObjectType, List<GameObject>> poolObjDic = new Dictionary<ObjectType, List<GameObject>>(); //保存从对象池中取出的对象
 
     // Update is called once per frame
@@ -25,6 +26,14 @@ public class MapController : MonoBehaviour
         nullPointsList.Clear();
         wallList.Clear();
         superWallList.Clear();
+        if (propList.Count > 0)
+        {
+            foreach (var item in propList)
+            {
+                item.GetComponent<Prop>().ResetProp();
+            }
+            propList.Clear();
+        }
         //回收实例化对象到对象池
         foreach (var item in poolObjDic)
         {
@@ -161,6 +170,7 @@ public class MapController : MonoBehaviour
     private void CreateProp()
     {
         int count = Random.Range(0, 2 + (int)(nullPointsList.Count * 0.05f));
+        Debug.LogError("Prop Counts:" + count);
         for (int i = 0; i < count; i++)
         {
             int index = Random.Range(0, nullPointsList.Count);//随机出道具位置
@@ -170,7 +180,9 @@ public class MapController : MonoBehaviour
                 poolObjDic.Add(ObjectType.Prop, new List<GameObject>());
             }
             poolObjDic[ObjectType.Prop].Add(prop);
-            nullPointsList.RemoveAt(index);//把当前生成可销毁的墙的空结点移给
+            propList.Add(prop);
+            wallList.Add(prop.transform.position);
+            nullPointsList.RemoveAt(index);//把当前生成可销毁的墙的空结点移除
         }
     }
 

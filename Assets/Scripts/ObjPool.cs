@@ -60,7 +60,7 @@ public class ObjPool : MonoBehaviour
     public void AddObj(ObjectType type, GameObject obj)
     {
         //判断对象池中存在此类型对象及实例
-        if (dic.ContainsKey(type) && dic[type].Contains(obj))
+        if (dic.ContainsKey(type) && !dic[type].Contains(obj))
         {
             dic[type].Add(obj);
         }

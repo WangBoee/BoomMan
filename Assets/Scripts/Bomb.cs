@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Bomb : MonoBehaviour
 {
     private int bombRange; //爆炸范围
     public GameObject bombEffect; //爆炸特效
-
+    private Action onFinAction;
     public void Init(int bRange, float time)
     {
         this.bombRange = bRange;
