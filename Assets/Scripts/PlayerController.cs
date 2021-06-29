@@ -95,7 +95,6 @@ public class PlayerController : MonoBehaviour
         anim.SetFloat("Horizontal", h);
         anim.SetFloat("Vertical", v);
         rig.MovePosition(transform.position + new Vector3(h, v) * speed);
-        //GetComponent<Camera>().transform.position = transform.position + new Vector3(h, v) * speed;
     }
     //触发检测
     private void OnTriggerEnter2D(Collider2D col)
