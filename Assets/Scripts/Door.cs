@@ -24,6 +24,7 @@ public class Door : MonoBehaviour
         //判断是否与爆炸特效发生碰撞
         if (col.CompareTag(Tag.BombEffect))
         {
+            gameObject.tag = Tag.Untagged;
             spriteRenderer.sprite = doorSprite;
             this.GetComponent<Collider2D>().isTrigger = true;
         }
@@ -32,7 +33,11 @@ public class Door : MonoBehaviour
         //全满足才可跳转下一关
         if (col.CompareTag(Tag.Player))
         {
-            //TODO
+            if (GameController.Instance.LoadNextLevel())
+            {
+                gameObject.tag = Tag.Wall;
+                GetComponent<BoxCollider2D>().isTrigger = false;
+            }
         }
     }
 }

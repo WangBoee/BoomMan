@@ -61,7 +61,7 @@ public class Prop : MonoBehaviour
                     playerController.HP++;
                     break;
                 case PropType.Speed:
-                    playerController.AddSpeed(0.05f);
+                    playerController.Speed += 0.05f;
                     break;
                 case PropType.Bomb:
                     playerController.bombCount++;

@@ -107,8 +107,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d4f662569fc34845aa44e955f5a7f07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 3
+  HP: 0
   bombPre: {fileID: 1766128827868212, guid: d3a5fd2931c57b9439e1e969a4fe4f8c, type: 2}
+  boomRange: 0
+  bombCount: 1
 --- !u!212 &212651648270522472
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -17,6 +17,19 @@ public class PlayerController : MonoBehaviour
     private Color color;
     private Rigidbody2D rig;
 
+    public float Speed
+    {
+        get
+        {
+            return speed;
+        }
+
+        set
+        {
+            speed += value;
+        }
+    }
+
     // Use this for initialization
     void Awake()
     {
@@ -69,7 +82,7 @@ public class PlayerController : MonoBehaviour
 
     public void AddSpeed(float val = 0.03f)
     {
-        if (val>0.5f)
+        if (val > 0.5f)
         {
             speed = 0.5f;
         }
@@ -82,6 +95,7 @@ public class PlayerController : MonoBehaviour
         anim.SetFloat("Horizontal", h);
         anim.SetFloat("Vertical", v);
         rig.MovePosition(transform.position + new Vector3(h, v) * speed);
+        //GetComponent<Camera>().transform.position = transform.position + new Vector3(h, v) * speed;
     }
     //触发检测
     private void OnTriggerEnter2D(Collider2D col)
