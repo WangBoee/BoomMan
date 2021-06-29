@@ -80,7 +80,7 @@ public class GameController : MonoBehaviour
             playerController.Init(3, 1, 2.0f); //初始化玩家
         }
         //将玩家位置传递给摄像机
-        Camera.main.GetComponent<CameraMove>().Init(player.transform);
+        Camera.main.GetComponent<CameraMove>().Init(player.transform, x, y);
         levelCount++; //关卡递增
         player.transform.position = mapController.GetPlayerPos();
     }
