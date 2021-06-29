@@ -53,24 +53,21 @@ public class Prop : MonoBehaviour
         //玩家人物触碰到道具
         if (col.CompareTag(Tag.Player))
         {
+            PlayerController playerController = col.GetComponent<PlayerController>();
             Debug.LogError("玩家触发");
             switch (propType)
             {
                 case PropType.HP:
-                    //玩家属性变化
-                    //TODO
+                    playerController.HP++;
                     break;
                 case PropType.Speed:
-                    //玩家属性变化
-                    //TODO
+                    playerController.AddSpeed(0.05f);
                     break;
                 case PropType.Bomb:
-                    //玩家属性变化
-                    //TODO
+                    playerController.bombCount++;
                     break;
                 case PropType.Range:
-                    //玩家属性变化
-                    //TODO
+                    playerController.boomRange++;
                     break;
                 case PropType.Time:
                     //玩家属性变化

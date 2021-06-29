@@ -5,17 +5,18 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public int HP = 3; //玩家生命值
+    public int HP = 0; //玩家生命值
     public GameObject bombPre; //普通炸弹预制体
-    private int boomRange; //炸弹爆炸范围
+    public int boomRange; //炸弹爆炸范围
+    public int bombCount = 1;
     private Animator anim;//动画状态机
-    private float speed = 0.1f; //玩家移动速度
+    private float speed = 0.06f; //玩家移动速度
     private bool isInjured = false; //标识玩家是否收到伤害
-    private float boomTime = 2.0f; //炸弹爆炸时间
+    private float boomTime = 0.0f; //炸弹爆炸时间
     private SpriteRenderer spriteRenderer;
     private Color color;
     private Rigidbody2D rig;
-    private int bombCount = 1;
+
     // Use this for initialization
     void Awake()
     {
@@ -35,7 +36,7 @@ public class PlayerController : MonoBehaviour
     //玩家初始化
     public void Init(int hp, int bRange, float bTime)
     {
-        HP = hp;
+        this.HP = hp;
         boomRange = bRange;
         boomTime = bTime;
     }
@@ -65,6 +66,15 @@ public class PlayerController : MonoBehaviour
     //{
     //    bombCount++;
     //}
+
+    public void AddSpeed(float val = 0.03f)
+    {
+        if (val>0.5f)
+        {
+            speed = 0.5f;
+        }
+        speed += val;
+    }
     private void Move()
     {
         float h = Input.GetAxis("Horizontal");//水平方向
