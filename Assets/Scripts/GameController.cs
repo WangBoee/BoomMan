@@ -136,4 +136,8 @@ public class GameController : MonoBehaviour
         Time.timeScale = 0;
         UIController.Instance.ShowGameOverPanel();
     }
+    public void DelMapWallList(Vector2 pos)
+    {
+        mapController.DelWall(pos);
+    }
 }

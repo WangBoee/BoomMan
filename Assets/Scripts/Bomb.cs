@@ -61,6 +61,7 @@ public class Bomb : MonoBehaviour
             {
                 //实例化炸弹特效并设置位置
                 GameObject bEff = ObjPool.Instance.GetObj(ObjectType.BombEffect, pos);
+                GameController.Instance.DelMapWallList(pos);
                 break;
             }
             //实例化炸弹特效并设置位置

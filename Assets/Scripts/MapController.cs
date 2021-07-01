@@ -229,4 +229,11 @@ public class MapController : MonoBehaviour
         }
         poolObjDic[type].Add(go);
     }
+    public void DelWall(Vector2 pos)
+    {
+        if (IsWall(pos))
+        {
+            wallList.Remove(pos);
+        }
+    }
 }
