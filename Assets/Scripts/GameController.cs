@@ -116,6 +116,10 @@ public class GameController : MonoBehaviour
             {
                 //播放死亡动画
                 playerController.PlayerDieAnim();
+                //暂停时间
+                Time.timeScale = 0;
+                //显示游戏结束界面
+                UIController.Instance.ShowGameOverPanel();
             }
         }
         else

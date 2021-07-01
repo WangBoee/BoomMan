@@ -9,6 +9,8 @@ public class UIController : MonoBehaviour
     public Text txtLevel;
     public Text txtTime;
     public Text txtEnemy;
+    public GameObject gameOverPanel; //游戏结束界面
+
 
     //刷新UI
     public void ReFresh(int hp, int level, int time, int enemy)
@@ -33,5 +35,9 @@ public class UIController : MonoBehaviour
     void Update()
     {
 
+    }
+    public void ShowGameOverPanel()
+    {
+        gameOverPanel.SetActive(true);
     }
 }
