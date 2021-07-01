@@ -107,6 +107,12 @@ public class PlayerController : MonoBehaviour
         //若玩家碰到敌人，生命值减一
         if (col.CompareTag(Tag.Enemy) || col.CompareTag(Tag.BombEffect))
         {
+            //游戏结束判定
+            if (HP <= 1)
+            {
+                GameController.Instance.GameOver();
+                return;
+            }
             HP--;
             StartCoroutine("Injured", 2f);
         }
