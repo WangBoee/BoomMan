@@ -52,6 +52,7 @@ public class UIController : MonoBehaviour
     //回到主界面
     public void ReturnMenu()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(1);
     }
 }

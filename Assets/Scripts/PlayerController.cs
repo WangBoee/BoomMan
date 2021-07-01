@@ -110,7 +110,7 @@ public class PlayerController : MonoBehaviour
             //游戏结束判定
             if (HP <= 1)
             {
-                DieAnimFinish();
+                PlayerDieAnim();
                 return;
             }
             HP--;
