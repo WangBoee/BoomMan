@@ -70,8 +70,7 @@ public class Prop : MonoBehaviour
                     playerController.boomRange++;
                     break;
                 case PropType.Time:
-                    //玩家属性变化
-                    //TODO
+                    GameController.Instance.time += 15;
                     break;
                 default:
                     break;
