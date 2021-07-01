@@ -127,4 +127,9 @@ public class PlayerController : MonoBehaviour
         }
         isInjured = false;
     }
+    //播放死亡动画
+    public void PlayerDieAnim()
+    {
+        //TODO
+    }
 }

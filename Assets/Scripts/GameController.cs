@@ -11,6 +11,7 @@ public class GameController : MonoBehaviour
     private int levelCount = 0; //关卡数
     private int enemyCount = 0; //敌人数量
     private GameObject player; //主角
+    private float timer = 0; //计时器
     public int time = 180;
     public static GameController Instance;
     void Awake()
@@ -27,6 +28,7 @@ public class GameController : MonoBehaviour
     void Update()
     {
         //LoadNextLevel();
+        LevelTimer(); //更新计时
         UIController.Instance.ReFresh(playerController.HP, levelCount, time, enemyCount);
     }
     //判断是否为实体墙及其他墙体
@@ -72,7 +74,6 @@ public class GameController : MonoBehaviour
         {
             enemyCount = 40;
         }
-        time = levelCount * 50 + 130;
         mapController = GetComponent<MapController>();
         mapController.InitMap(x, y, x * y, enemyCount); //初始化地图
                                                         //判断玩家是否第一次生成
@@ -85,6 +86,7 @@ public class GameController : MonoBehaviour
         //将玩家位置传递给摄像机
         Camera.main.GetComponent<CameraMove>().Init(player.transform, x, y);
         levelCount++; //关卡递增
+        time = levelCount * 50 + 130;
         player.transform.position = mapController.GetPlayerPos();
     }
     public bool LoadNextLevel()
@@ -97,6 +99,34 @@ public class GameController : MonoBehaviour
         else
         {
             return false;
+        }
+    }
+    void LevelTimer()
+    {
+        //时间用完，游戏结束
+        if (time <= 0)
+        {
+            if (playerController.HP > 0)
+            {
+                playerController.HP--;
+                time = levelCount * 50 + 130;
+                return;
+            }
+            else
+            {
+                //播放死亡动画
+                playerController.PlayerDieAnim();
+            }
+        }
+        else
+        {
+            //时间没用完，倒计时
+            timer += Time.deltaTime;
+            if (timer >= 1.0f)
+            {
+                time--;
+                timer = 0;
+            }
         }
     }
 }
