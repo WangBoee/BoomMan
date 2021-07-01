@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Color color;
     private Rigidbody2D rig;
+    private bool isDied = false;
 
     public float Speed
     {
@@ -43,8 +44,11 @@ public class PlayerController : MonoBehaviour
     //GetAxis线性变换（0-1渐变），GetAxisRaw是跳跃（0-1切换）。
     void Update()
     {
-        Move();
-        Bomb();
+        if (!isDied)
+        {
+            Move();
+            Bomb();
+        }
     }
     //玩家初始化
     public void Init(int hp, int bRange, float bTime)
@@ -136,6 +140,7 @@ public class PlayerController : MonoBehaviour
     //播放死亡动画
     public void PlayerDieAnim()
     {
+        isDied = true;
         anim.SetTrigger("Die");
     }
     //死亡动画播放完成，再调用游戏结束函数
