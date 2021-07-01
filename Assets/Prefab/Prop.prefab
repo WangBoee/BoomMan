@@ -81,13 +81,13 @@ MonoBehaviour:
   wallSprite: {fileID: 21300000, guid: 2269c5e106f947345818765e14689a34, type: 3}
   propTypeSprite:
   - propType: 0
-    sprite: {fileID: 21300004, guid: 85eabaa4d070a1d4ca7aecca57abd52b, type: 3}
+    sprite: {fileID: 21300000, guid: 8dd27478c74f12e41b4f8cd9462372b4, type: 3}
   - propType: 1
-    sprite: {fileID: 21300008, guid: 85eabaa4d070a1d4ca7aecca57abd52b, type: 3}
+    sprite: {fileID: 21300000, guid: 55b4746f96f7f134db6043d2e4fb2dec, type: 3}
   - propType: 2
-    sprite: {fileID: 21300002, guid: 85eabaa4d070a1d4ca7aecca57abd52b, type: 3}
+    sprite: {fileID: 21300000, guid: e9017966ebaf0144394744162a7cd350, type: 3}
   - propType: 3
-    sprite: {fileID: 21300000, guid: 85eabaa4d070a1d4ca7aecca57abd52b, type: 3}
+    sprite: {fileID: 21300000, guid: c5ec71a184292ed4cbec0a311988497c, type: 3}
   - propType: 4
     sprite: {fileID: 21300006, guid: 85eabaa4d070a1d4ca7aecca57abd52b, type: 3}
 --- !u!212 &212711982365485746

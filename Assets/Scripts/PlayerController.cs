@@ -110,7 +110,7 @@ public class PlayerController : MonoBehaviour
             //游戏结束判定
             if (HP <= 1)
             {
-                GameController.Instance.GameOver();
+                DieAnimFinish();
                 return;
             }
             HP--;
@@ -136,6 +136,11 @@ public class PlayerController : MonoBehaviour
     //播放死亡动画
     public void PlayerDieAnim()
     {
-        //TODO
+        anim.SetTrigger("Die");
+    }
+    //死亡动画播放完成，再调用游戏结束函数
+    public void DieAnimFinish()
+    {
+        GameController.Instance.GameOver();
     }
 }
