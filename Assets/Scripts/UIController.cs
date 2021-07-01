@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class UIController : MonoBehaviour
 {
+    public static UIController Instance;
     public Text txtHP;
     public Text txtLevel;
     public Text txtTime;
@@ -15,7 +16,12 @@ public class UIController : MonoBehaviour
         txtHP.text = "HP:" + hp.ToString();
         txtLevel.text = "Level:" + level.ToString();
         txtTime.text = "Time:" + time.ToString();
-        txtEnemy.text = "Enemy" + enemy.ToString();
+        txtEnemy.text = "Enemy:" + enemy.ToString();
+    }
+
+    void Awake()
+    {
+        Instance = this;
     }
     // Use this for initialization
     void Start()

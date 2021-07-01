@@ -11,6 +11,7 @@ public class GameController : MonoBehaviour
     private int levelCount = 0; //关卡数
     private int enemyCount = 0; //敌人数量
     private GameObject player; //主角
+    public int time = 180;
     public static GameController Instance;
     void Awake()
     {
@@ -26,6 +27,7 @@ public class GameController : MonoBehaviour
     void Update()
     {
         //LoadNextLevel();
+        UIController.Instance.ReFresh(playerController.HP, levelCount, time, enemyCount);
     }
     //判断是否为实体墙及其他墙体
     //使其他脚本能调用
@@ -70,6 +72,7 @@ public class GameController : MonoBehaviour
         {
             enemyCount = 40;
         }
+        time = levelCount * 50 + 130;
         mapController = GetComponent<MapController>();
         mapController.InitMap(x, y, x * y, enemyCount); //初始化地图
                                                         //判断玩家是否第一次生成

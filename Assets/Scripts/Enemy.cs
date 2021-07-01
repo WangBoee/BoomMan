@@ -83,7 +83,7 @@ public class Enemy : MonoBehaviour
             pcolor.a = 0.5f;
             sr.color = pcolor;
         }
-        if (col.CompareTag(Tag.BombEffect))
+        if (col.CompareTag(Tag.BombEffect)&&this.gameObject.activeSelf)
         {
             if (!isDied)
             {
