@@ -86,6 +86,7 @@ public class GameController : MonoBehaviour
         //将玩家位置传递给摄像机
         Camera.main.GetComponent<CameraMove>().Init(player.transform, x, y);
         levelCount++; //关卡递增
+        UIController.Instance.PlayLevelFadeAnim(levelCount);
         time = levelCount * 50 + 130;
         player.transform.position = mapController.GetPlayerPos();
     }

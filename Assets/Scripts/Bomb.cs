@@ -36,7 +36,7 @@ public class Bomb : MonoBehaviour
         }
         //延时结束，删除炸弹物体，生成爆炸特效
         //Destroy(Instantiate(bombEffect, transform.position, Quaternion.identity), 0.5f);
-        GameObject bombEffect = ObjPool.Instance.GetObj(ObjectType.BombEffect, transform.position);
+        ObjPool.Instance.GetObj(ObjectType.BombEffect, transform.position);
         //炸弹特效回收改由帧事件处理
         Boom(Vector2.left); //向左延伸爆炸效果
         Boom(Vector2.right); //向右
@@ -60,12 +60,12 @@ public class Bomb : MonoBehaviour
             if (GameController.Instance.IsWall(pos))
             {
                 //实例化炸弹特效并设置位置
-                GameObject bEff = ObjPool.Instance.GetObj(ObjectType.BombEffect, pos);
+                ObjPool.Instance.GetObj(ObjectType.BombEffect, pos);
                 GameController.Instance.DelMapWallList(pos);
                 break;
             }
             //实例化炸弹特效并设置位置
-            GameObject bombEff = ObjPool.Instance.GetObj(ObjectType.BombEffect, pos);
+            ObjPool.Instance.GetObj(ObjectType.BombEffect, pos);
         }
     }
 }

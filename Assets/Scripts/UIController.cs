@@ -6,10 +6,12 @@ using UnityEngine.SceneManagement;
 public class UIController : MonoBehaviour
 {
     public static UIController Instance;
+    public Animator levelFade;
     public Text txtHP;
     public Text txtLevel;
     public Text txtTime;
     public Text txtEnemy;
+    public Text txtLevelTitle;
     public GameObject gameOverPanel; //游戏结束界面
     //public Button restart; //重新开始按钮
     //public Button menu; //主菜单按钮
@@ -42,6 +44,12 @@ public class UIController : MonoBehaviour
     public void ShowGameOverPanel()
     {
         gameOverPanel.SetActive(true);
+    }
+
+    public void PlayLevelFadeAnim(int levelIndex)
+    {
+        txtLevelTitle.text = "Level:" + levelIndex.ToString();
+        levelFade.Play("LevelFade", 0, 0);
     }
     //按钮事件绑定
     public void ReStart()
