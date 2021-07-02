@@ -13,6 +13,9 @@ public class Enemy : MonoBehaviour
     private SpriteRenderer sr = null; //获取精灵渲染器
     private bool locked = false; //敌人是否被困住，默认假设未被困住
     private bool isDied = false; //敌人是否被炸掉
+    private Animator anim;//动画状态机
+    private float h = 0;
+    private float v = 0;
     public void Init()
     {
         pcolor.a = 1;
@@ -22,6 +25,7 @@ public class Enemy : MonoBehaviour
     }
     void Awake()
     {
+        anim = this.GetComponent<Animator>();
         rig = this.GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         pcolor = sr.color;
@@ -39,6 +43,8 @@ public class Enemy : MonoBehaviour
         //先判断是否被困，困住则不动
         if (!locked)
         {
+            anim.SetFloat("H", h);
+            anim.SetFloat("V", v);
             rig.MovePosition((Vector2)transform.position + (speed * dirVec));
         }
         else
@@ -54,15 +60,23 @@ public class Enemy : MonoBehaviour
         {
             case 0: //上
                 dirVec = Vector2.up;
+                h = 0;
+                v = 1;
                 break;
             case 1: //下
                 dirVec = Vector2.down;
+                h = 0;
+                v = -1;
                 break;
             case 2: //左
                 dirVec = Vector2.left;
+                h = -1;
+                v = 0;
                 break;
             case 3: //右
                 dirVec = Vector2.right;
+                h = 1;
+                v = 0;
                 break;
             default:
                 break;
@@ -83,7 +97,7 @@ public class Enemy : MonoBehaviour
             pcolor.a = 0.5f;
             sr.color = pcolor;
         }
-        if (col.CompareTag(Tag.BombEffect)&&this.gameObject.activeSelf)
+        if (col.CompareTag(Tag.BombEffect) && this.gameObject.activeSelf)
         {
             if (!isDied)
             {

@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     public GameObject playerPre;//主角预制体
-    public GameObject enemyPre;
+    //public GameObject enemyPre;
     private PlayerController playerController;
     private MapController mapController;
     private int levelCount = 0; //关卡数

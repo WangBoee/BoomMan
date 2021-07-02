@@ -284,7 +284,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPre: {fileID: 1888314473923378, guid: 39ca87eeaa63266498a34683874557c5, type: 2}
-  enemyPre: {fileID: 1473224915260146, guid: 60655ef43e33e40449c3b5be5a464df7, type: 2}
   time: 180
 --- !u!114 &160632760
 MonoBehaviour:
@@ -304,7 +303,7 @@ MonoBehaviour:
     type: 1
   - prefab: {fileID: 1855749910618064, guid: ec1664c40d273e74a977a15fc09c8cd8, type: 2}
     type: 5
-  - prefab: {fileID: 1473224915260146, guid: 60655ef43e33e40449c3b5be5a464df7, type: 2}
+  - prefab: {fileID: 1735457867599208, guid: 14f074d009686df4d98b1b4d1976f7af, type: 2}
     type: 4
   - prefab: {fileID: 1613611888784258, guid: 5faab53f7b75d9c4b93626d787e728b7, type: 2}
     type: 3
@@ -323,7 +322,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1689,7 +1688,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Enemy:20
+  m_Text: Enemy:0
 --- !u!222 &2083290874
 CanvasRenderer:
   m_ObjectHideFlags: 0
