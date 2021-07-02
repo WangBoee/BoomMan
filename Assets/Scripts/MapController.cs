@@ -170,7 +170,7 @@ public class MapController : MonoBehaviour
     private void CreateProp()
     {
         int count = Random.Range(0, 2 + (int)(nullPointsList.Count * 0.05f));
-        Debug.LogError("Prop Counts:" + count);
+        Debug.Log("Prop Counts:" + count);
         for (int i = 0; i < count; i++)
         {
             int index = Random.Range(0, nullPointsList.Count);//随机出道具位置

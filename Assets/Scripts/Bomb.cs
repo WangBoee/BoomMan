@@ -34,6 +34,7 @@ public class Bomb : MonoBehaviour
         {
             onFinAction();
         }
+        AudioController.Instance.PlayBoom(); //播放音效
         //延时结束，删除炸弹物体，生成爆炸特效
         //Destroy(Instantiate(bombEffect, transform.position, Quaternion.identity), 0.5f);
         ObjPool.Instance.GetObj(ObjectType.BombEffect, transform.position);

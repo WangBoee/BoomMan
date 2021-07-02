@@ -62,6 +62,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && bombCount != 0)
         {
+            AudioController.Instance.PlayFire(); //播放音效
             Vector2 pos = new Vector2(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y));
             GameObject bomb = ObjPool.Instance.GetObj(ObjectType.Bomb, pos);
             bombCount--;
@@ -164,5 +165,9 @@ public class PlayerController : MonoBehaviour
             ObjPool.Instance.AddObj(ObjectType.Bomb, item);
         }
         bombList.Clear();
+        StopCoroutine("Injured");
+        color.a = 1;
+        spriteRenderer.color = color;
+        isInjured = false;
     }
 }
