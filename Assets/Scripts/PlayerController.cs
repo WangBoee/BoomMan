@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     private Color color;
     private Rigidbody2D rig;
     private bool isDied = false;
+    private List<GameObject> bombList = new List<GameObject>();
 
     public float Speed
     {
@@ -69,13 +70,18 @@ public class PlayerController : MonoBehaviour
                 //一般调用方法
                 //bomb.GetComponent<Bomb>().Init(boomRange, boomTime, OnFinAction); //调用Bomb类中Init初始化炸弹特效
                 //匿名函数，lambda 表达式
-                bomb.GetComponent<Bomb>().Init(boomRange, boomTime, () => { bombCount++; });
+                bomb.GetComponent<Bomb>().Init(boomRange, boomTime, () =>
+                {
+                    bombCount++;
+                    bombList.Remove(bomb);  //将炸弹从列表中移除
+                });
             }
             else
             {
                 Debug.LogError("bomb is null");
             }
             bombCount--;
+            bombList.Add(bomb);
         }
     }
     //一般调用方法
@@ -147,5 +153,16 @@ public class PlayerController : MonoBehaviour
     public void DieAnimFinish()
     {
         GameController.Instance.GameOver();
+    }
+    //重置炸弹
+    public void ReSet()
+    {
+        foreach (var item in bombList)
+        {
+            bombCount++;
+            item.GetComponent<Bomb>().StopAllCoroutines();
+            ObjPool.Instance.AddObj(ObjectType.Bomb, item);
+        }
+        bombList.Clear();
     }
 }

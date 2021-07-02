@@ -49,7 +49,7 @@ public class UIController : MonoBehaviour
     public void PlayLevelFadeAnim(int levelIndex)
     {
         txtLevelTitle.text = "Level:" + levelIndex.ToString();
-        levelFade.Play("LevelFade", 0, 0);
+        levelFade.Play("LevelFadeAnim", 0, 0);
     }
     //按钮事件绑定
     public void ReStart()

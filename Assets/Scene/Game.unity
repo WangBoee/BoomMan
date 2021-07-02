@@ -121,7 +121,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 33418072}
-  - component: {fileID: 33418073}
   m_Layer: 5
   m_Name: TopBar
   m_TagString: Untagged
@@ -152,24 +151,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -50}
   m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &33418073
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 33418071}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c21b457d9bfc81f47ad7af4bb2261702, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levelFade: {fileID: 368401285}
-  txtHP: {fileID: 1097855398}
-  txtLevel: {fileID: 502939585}
-  txtTime: {fileID: 1942534597}
-  txtEnemy: {fileID: 2083290873}
-  txtLevelTitle: {fileID: 1665457724}
-  gameOverPanel: {fileID: 442130326}
 --- !u!1 &135397670
 GameObject:
   m_ObjectHideFlags: 0
@@ -345,7 +326,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &368401284
 RectTransform:
   m_ObjectHideFlags: 0
@@ -374,7 +355,7 @@ Animator:
   m_GameObject: {fileID: 368401283}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f30fdd5f2218df44396a83bf8c23fd3c, type: 2}
+  m_Controller: {fileID: 9100000, guid: 54ef60148ca5c0b48985f4837591f3f2, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -635,7 +616,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 33418073}
+      - m_Target: {fileID: 991381530}
         m_MethodName: ReStart
         m_Mode: 1
         m_Arguments:
@@ -757,7 +738,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 33418073}
+      - m_Target: {fileID: 991381530}
         m_MethodName: ReturnMenu
         m_Mode: 1
         m_Arguments:

@@ -30,6 +30,10 @@ public class GameController : MonoBehaviour
         //LoadNextLevel();
         LevelTimer(); //更新计时
         UIController.Instance.ReFresh(playerController.HP, levelCount, time, enemyCount);
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            LevelController();
+        }
     }
     //判断是否为实体墙及其他墙体
     //使其他脚本能调用
@@ -83,6 +87,7 @@ public class GameController : MonoBehaviour
             playerController = player.GetComponent<PlayerController>();
             playerController.Init(3, 1, 2.0f); //初始化玩家
         }
+        playerController.ReSet();
         //将玩家位置传递给摄像机
         Camera.main.GetComponent<CameraMove>().Init(player.transform, x, y);
         levelCount++; //关卡递增
