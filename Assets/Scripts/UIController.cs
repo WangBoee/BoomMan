@@ -55,12 +55,12 @@ public class UIController : MonoBehaviour
     public void ReStart()
     {
         Time.timeScale = 1; //恢复游戏时间
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
     //回到主界面
     public void ReturnMenu()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(0);
     }
 }

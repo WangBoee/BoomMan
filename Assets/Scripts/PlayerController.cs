@@ -64,6 +64,7 @@ public class PlayerController : MonoBehaviour
         {
             Vector2 pos = new Vector2(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y));
             GameObject bomb = ObjPool.Instance.GetObj(ObjectType.Bomb, pos);
+            bombCount--;
             if (bomb != null)
             {
                 //GameObject bomb = GameObject.Instantiate(bombPre);
@@ -80,7 +81,6 @@ public class PlayerController : MonoBehaviour
             {
                 Debug.LogError("bomb is null");
             }
-            bombCount--;
             bombList.Add(bomb);
         }
     }
