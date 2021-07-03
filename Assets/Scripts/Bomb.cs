@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-
+using EZCameraShake;
 public class Bomb : MonoBehaviour
 {
     private int bombRange; //爆炸范围
@@ -34,6 +34,7 @@ public class Bomb : MonoBehaviour
         {
             onFinAction();
         }
+        CameraShaker.Instance.ShakeOnce(4f, 4f, 0.1f, 1.0f);
         AudioController.Instance.PlayBoom(); //播放音效
         //延时结束，删除炸弹物体，生成爆炸特效
         //Destroy(Instantiate(bombEffect, transform.position, Quaternion.identity), 0.5f);

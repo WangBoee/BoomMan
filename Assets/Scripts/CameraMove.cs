@@ -24,7 +24,7 @@ public class CameraMove : MonoBehaviour
             float l = transform.position.z;
             transform.position = Vector3.Lerp(transform.position, new Vector3(h, v, l), smoothing * Time.deltaTime);
 
-            float x = Mathf.Clamp(transform.position.x, -(horizontalX - 5), horizontalX - 7);
+            float x = Mathf.Clamp(transform.position.x, -(horizontalX - 8), horizontalX - 7);
             float y = Mathf.Clamp(transform.position.y, -(vetcalY - 2), vetcalY - 4);
             transform.position = new Vector3(x, y, transform.position.z);
         }

@@ -14,6 +14,7 @@ public class GameController : MonoBehaviour
     private float timer = 0; //计时器
     public int time = 180;
     public static GameController Instance;
+    public GameObject camctrl;
     void Awake()
     {
         Instance = this;
@@ -88,17 +89,18 @@ public class GameController : MonoBehaviour
             playerController.Init(3, 1, 2.0f); //初始化玩家
         }
         playerController.ReSet();
+        player.transform.position = mapController.GetPlayerPos();
+        levelCount++; //关卡递增
+        UIController.Instance.PlayLevelFadeAnim(levelCount);
+        time = levelCount * 50 + 130;
         GameObject[] effect = GameObject.FindGameObjectsWithTag(Tag.BombEffect);
         foreach (var item in effect)
         {
             ObjPool.Instance.AddObj(ObjectType.BombEffect, item);
         }
         //将玩家位置传递给摄像机
-        Camera.main.GetComponent<CameraMove>().Init(player.transform, x, y);
-        levelCount++; //关卡递增
-        UIController.Instance.PlayLevelFadeAnim(levelCount);
-        time = levelCount * 50 + 130;
-        player.transform.position = mapController.GetPlayerPos();
+        //Camera.main.GetComponent<CameraMove>().Init(player.transform, x, y);
+        camctrl.GetComponent<CameraMove>().Init(player.transform, x, y);
     }
     public bool LoadNextLevel()
     {

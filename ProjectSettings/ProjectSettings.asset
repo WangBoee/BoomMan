@@ -647,12 +647,13 @@ PlayerSettings:
     daydream:
       daydreamIconForeground: {fileID: 0}
       daydreamIconBackground: {fileID: 0}
-  cloudServicesEnabled: {}
+  cloudServicesEnabled:
+    UNet: 1
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
-  cloudProjectId: 96bba5fe-4cd7-4bea-85f3-692e4490e6fb
+  cloudProjectId: 8a39337f-e81d-4ce9-ab00-6581ef3d3fb0
   projectName: BoomMan
-  organizationId: wechat_os_qy01hdhtsgj9grcuaq3t5kuqe
+  organizationId: boiwong
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
