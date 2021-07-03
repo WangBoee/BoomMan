@@ -7,22 +7,24 @@ public class UIController : MonoBehaviour
 {
     public static UIController Instance;
     public Animator levelFade;
-    public Text txtHP;
+    public Button txtHP;
     public Text txtLevel;
-    public Text txtTime;
-    public Text txtEnemy;
+    public Button txtTime;
+    public Button txtEnemy;
     public Text txtLevelTitle;
+    public GameObject topBar; //游戏暂停界面
     public GameObject gameOverPanel; //游戏结束界面
+    public GameObject pausePanel; //游戏暂停界面
     //public Button restart; //重新开始按钮
     //public Button menu; //主菜单按钮
 
     //刷新UI
     public void ReFresh(int hp, int level, int time, int enemy)
     {
-        txtHP.text = "HP:" + hp.ToString();
-        txtLevel.text = "Level:" + level.ToString();
-        txtTime.text = "Time:" + time.ToString();
-        txtEnemy.text = "Enemy:" + enemy.ToString();
+        txtHP.GetComponentInChildren<Text>().text = "    "+hp.ToString();
+        txtTime.GetComponentInChildren<Text>().text = "    " + time.ToString();
+        txtEnemy.GetComponentInChildren<Text>().text = "    " + enemy.ToString();
+        txtLevel.text = "Lv." + level.ToString();
     }
 
     void Awake()
@@ -46,12 +48,23 @@ public class UIController : MonoBehaviour
         gameOverPanel.SetActive(true);
     }
 
+    public void ShowPausePanel()
+    {
+        pausePanel.SetActive(true);
+    }
     public void PlayLevelFadeAnim(int levelIndex)
     {
         txtLevelTitle.text = "Level:" + levelIndex.ToString();
         levelFade.Play("LevelFade", 0, 0);
     }
+
     //按钮事件绑定
+    public void Resume()
+    {
+        Time.timeScale = 1; //恢复游戏时间
+        topBar.SetActive(true);
+        pausePanel.SetActive(false);
+    }
     public void ReStart()
     {
         Time.timeScale = 1; //恢复游戏时间

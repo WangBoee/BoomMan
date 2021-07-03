@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -34,6 +35,13 @@ public class GameController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.N))
         {
             LevelController();
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            //SceneManager.LoadScene(2); //暂停场景
+            Time.timeScale = 0;
+            UIController.Instance.topBar.SetActive(false);
+            UIController.Instance.ShowPausePanel();
         }
     }
     //判断是否为实体墙及其他墙体
