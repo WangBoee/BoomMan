@@ -24,8 +24,9 @@ public class CameraMove : MonoBehaviour
             float l = transform.position.z;
             transform.position = Vector3.Lerp(transform.position, new Vector3(h, v, l), smoothing * Time.deltaTime);
 
-            float x = Mathf.Clamp(transform.position.x, -(horizontalX - 8), horizontalX - 7);
-            float y = Mathf.Clamp(transform.position.y, -(vetcalY - 2), vetcalY - 4);
+            float x = Mathf.Clamp(transform.position.x, -(horizontalX - 6.39f), horizontalX - 8.38f);
+            float y = Mathf.Clamp(transform.position.y, -(vetcalY - 2.5f), vetcalY - 4.5f);
+            //Debug.LogError(x + " " + y + "\n" + player.position.x + " " + player.position.y);
             transform.position = new Vector3(x, y, transform.position.z);
         }
     }

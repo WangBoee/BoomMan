@@ -62,8 +62,8 @@ public class GameController : MonoBehaviour
     private void LevelController()
     {
         //每三关放大一次地图
-        int x = 6 + 2 * (levelCount / 3);
-        int y = 3 + 2 * (levelCount / 3);
+        int x = 8 + 2 * (levelCount / 3);
+        int y = 4 + 2 * (levelCount / 3);
         //设置地图上限
         if (x > 18)
         {
