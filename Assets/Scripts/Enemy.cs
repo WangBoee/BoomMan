@@ -16,6 +16,7 @@ public class Enemy : MonoBehaviour
     private Animator anim;//动画状态机
     private float h = 0;
     private float v = 0;
+    public RuntimeAnimatorController[] animCtrl = new RuntimeAnimatorController[2];
     public void Init()
     {
         pcolor.a = 1;
@@ -28,6 +29,8 @@ public class Enemy : MonoBehaviour
         anim = this.GetComponent<Animator>();
         rig = this.GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+        int animIndex = Random.Range(0, 2);
+        GetComponent<Animator>().runtimeAnimatorController = animCtrl[animIndex];
         pcolor = sr.color;
     }
     // Use this for initialization
