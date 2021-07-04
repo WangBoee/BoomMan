@@ -21,7 +21,7 @@ public class UIController : MonoBehaviour
     //刷新UI
     public void ReFresh(int hp, int level, int time, int enemy)
     {
-        txtHP.GetComponentInChildren<Text>().text = "    "+hp.ToString();
+        txtHP.GetComponentInChildren<Text>().text = "    " + hp.ToString();
         txtTime.GetComponentInChildren<Text>().text = "    " + time.ToString();
         txtEnemy.GetComponentInChildren<Text>().text = "    " + enemy.ToString();
         txtLevel.text = "Lv." + level.ToString();
@@ -64,6 +64,7 @@ public class UIController : MonoBehaviour
         Time.timeScale = 1; //恢复游戏时间
         topBar.SetActive(true);
         pausePanel.SetActive(false);
+        GameController.Instance.PlayMusic();
     }
     public void ReStart()
     {

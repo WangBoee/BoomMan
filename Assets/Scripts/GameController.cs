@@ -40,6 +40,7 @@ public class GameController : MonoBehaviour
         {
             //SceneManager.LoadScene(2); //暂停场景
             Time.timeScale = 0;
+            MuteMusic();
             UIController.Instance.topBar.SetActive(false);
             UIController.Instance.ShowPausePanel();
         }
@@ -160,5 +161,13 @@ public class GameController : MonoBehaviour
     public void DelMapWallList(Vector2 pos)
     {
         mapController.DelWall(pos);
+    }
+    public void PlayMusic()
+    {
+        GetComponent<AudioSource>().Play();
+    }
+    public void MuteMusic()
+    {
+        GetComponent<AudioSource>().Pause();
     }
 }
