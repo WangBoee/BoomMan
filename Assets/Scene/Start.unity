@@ -184,13 +184,13 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'W   (Up Arrow)         Move Up
+  m_Text: 'W          Move Up
 
-    S  (Down Arrow)      Move Down
+    S           Move Down
 
-    A   (Left Arrow)        Move Left
+    A           Move Left
 
-    D  (Right Arrow)       Move'
+    D           Move Right'
 --- !u!222 &111235959
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -902,7 +902,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: e5fc2a86a2448fa43917b9cc72622d7d, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.75
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -958,7 +958,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:

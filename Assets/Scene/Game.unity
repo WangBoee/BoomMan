@@ -556,10 +556,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3034e91ee855bb44693945162403095c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wallSprite: {fileID: 21300000, guid: 2269c5e106f947345818765e14689a34, type: 3}
   X: 0
   Y: 0
   doorPre: {fileID: 1110052619413608, guid: 68248d9b16079794a9ab02c33e4ecc82, type: 2}
+  door_wall: {fileID: 9100000, guid: e66c67b5e56211044855f819f1cc22ff, type: 2}
 --- !u!4 &160632758
 Transform:
   m_ObjectHideFlags: 0

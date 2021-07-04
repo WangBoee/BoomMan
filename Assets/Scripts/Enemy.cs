@@ -42,7 +42,7 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("是否困住: " + locked);
+        //Debug.Log("是否困住: " + locked);
         //先判断是否被困，困住则不动
         if (!locked)
         {

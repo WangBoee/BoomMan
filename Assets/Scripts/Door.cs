@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    public Sprite doorSprite;   //用于获取门的图片
-    private SpriteRenderer spriteRenderer;
+    private Animator anim;
+    public RuntimeAnimatorController door;
     // Use this for initialization
     void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -25,7 +25,7 @@ public class Door : MonoBehaviour
         if (col.CompareTag(Tag.BombEffect))
         {
             gameObject.tag = Tag.Untagged;
-            spriteRenderer.sprite = doorSprite;
+            anim.runtimeAnimatorController = door;
             this.GetComponent<Collider2D>().isTrigger = true;
         }
         //判断门是否与玩家相碰

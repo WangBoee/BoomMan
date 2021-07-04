@@ -82,6 +82,7 @@ public class GameController : MonoBehaviour
         {
             y = 15;
         }
+
         enemyCount = 1 + (int)(levelCount * 1.5); //敌人数量
                                                   //设置敌人数量上限
         if (enemyCount > 10)
@@ -98,6 +99,8 @@ public class GameController : MonoBehaviour
             playerController.Init(3, 1, 2.0f); //初始化玩家
         }
         playerController.ReSet();
+        int bCount = 1 + levelCount / 3;
+        playerController.SetBombCount(bCount);
         player.transform.position = mapController.GetPlayerPos();
         levelCount++; //关卡递增
         UIController.Instance.PlayLevelFadeAnim(levelCount);

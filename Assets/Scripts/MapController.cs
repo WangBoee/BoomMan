@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class MapController : MonoBehaviour
 {
-    public Sprite wallSprite;   //获取墙体图片
     public int X, Y;//X行 Y列
     public GameObject doorPre;//门的预制体
+    public RuntimeAnimatorController door_wall;
     private GameObject door;
     private List<Vector2> nullPointsList = new List<Vector2>();
     private List<Vector2> superWallList = new List<Vector2>();
@@ -49,7 +49,7 @@ public class MapController : MonoBehaviour
         X = x;
         Y = y;
         Recovery();
-        Debug.Log("init map");
+        //Debug.Log("init map");
         //生成地图
         CreateSuperWall();
         FindNullPoint();
@@ -159,7 +159,7 @@ public class MapController : MonoBehaviour
         {
             door = GameObject.Instantiate(doorPre);
         }
-        door.GetComponent<SpriteRenderer>().sprite = wallSprite;
+        door.GetComponent<Animator>().runtimeAnimatorController = door_wall;
         int index = Random.Range(0, nullPointsList.Count);//随机出门的位置
         door.transform.position = nullPointsList[index];
         wallList.Add((Vector2)door.transform.position);
@@ -170,7 +170,7 @@ public class MapController : MonoBehaviour
     private void CreateProp()
     {
         int count = Random.Range(0, 2 + (int)(nullPointsList.Count * 0.05f));
-        Debug.Log("Prop Counts:" + count);
+        //Debug.Log("Prop Counts:" + count);
         for (int i = 0; i < count; i++)
         {
             int index = Random.Range(0, nullPointsList.Count);//随机出道具位置

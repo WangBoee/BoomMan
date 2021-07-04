@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     public int boomRange; //炸弹爆炸范围
     public int bombCount = 1;
     private Animator anim;//动画状态机
-    private float speed = 0.06f; //玩家移动速度
+    public float speed = 0.06f; //玩家移动速度
     private bool isInjured = false; //标识玩家是否收到伤害
     private float boomTime = 0.0f; //炸弹爆炸时间
     private SpriteRenderer spriteRenderer;
@@ -18,19 +18,6 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rig;
     private bool isDied = false;
     private List<GameObject> bombList = new List<GameObject>();
-
-    public float Speed
-    {
-        get
-        {
-            return speed;
-        }
-
-        set
-        {
-            speed += value;
-        }
-    }
 
     // Use this for initialization
     void Awake()
@@ -57,6 +44,17 @@ public class PlayerController : MonoBehaviour
         this.HP = hp;
         boomRange = bRange;
         boomTime = bTime;
+    }
+    public void SetBombCount(int count)
+    {
+        if (bombCount > 8)
+        {
+            bombCount = 8;
+        }
+        else
+        {
+            bombCount = count;
+        }
     }
     private void Bomb()
     {
@@ -91,11 +89,11 @@ public class PlayerController : MonoBehaviour
     //    bombCount++;
     //}
 
-    public void AddSpeed(float val = 0.03f)
+    public void AddSpeed(float val = 0.005f)
     {
-        if (val > 0.5f)
+        if (val > 0.12f)
         {
-            speed = 0.5f;
+            speed = 0.12f;
         }
         speed += val;
     }
