@@ -15,6 +15,12 @@ public class UIController : MonoBehaviour
     public GameObject topBar; //游戏暂停界面
     public GameObject gameOverPanel; //游戏结束界面
     public GameObject pausePanel; //游戏暂停界面
+    public AudioSource audioCtrl;
+    public Button musicButton;
+    public Sprite muteSprite;
+    public Sprite playSprite;
+    public Image buttonIcon;
+    private bool isMute;
     //public Button restart; //重新开始按钮
     //public Button menu; //主菜单按钮
 
@@ -76,5 +82,21 @@ public class UIController : MonoBehaviour
     {
         Time.timeScale = 1;
         SceneManager.LoadScene(0);
+    }
+    public void MusicCtrl()
+    {
+        isMute = audioCtrl.GetComponent<AudioSource>().mute;
+        if (isMute)
+        {
+            audioCtrl.GetComponent<AudioSource>().mute = false;
+            musicButton.GetComponentInChildren<Text>().text = "关闭音乐";
+            buttonIcon.GetComponent<Image>().sprite = playSprite;
+        }
+        else
+        {
+            audioCtrl.GetComponent<AudioSource>().mute = true;
+            musicButton.GetComponentInChildren<Text>().text = "开启音乐";
+            buttonIcon.GetComponent<Image>().sprite = muteSprite;
+        }
     }
 }
