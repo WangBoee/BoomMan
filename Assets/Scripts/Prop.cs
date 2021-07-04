@@ -54,7 +54,7 @@ public class Prop : MonoBehaviour
         if (col.CompareTag(Tag.Player))
         {
             PlayerController playerController = col.GetComponent<PlayerController>();
-            Debug.LogError("玩家触发");
+            //Debug.LogError("玩家触发");
             switch (propType)
             {
                 case PropType.HP:

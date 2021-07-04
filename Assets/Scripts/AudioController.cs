@@ -6,7 +6,7 @@ public class AudioController : MonoBehaviour
 {
 
     public static AudioController Instance;
-    public AudioClip boom;
+    public AudioClip[] boom = new AudioClip[5];
     public AudioClip fire;
     private AudioSource audioSource;
     void Awake()
@@ -27,7 +27,8 @@ public class AudioController : MonoBehaviour
     }
     public void PlayBoom()
     {
-        audioSource.clip = boom;
+        int index = Random.Range(0, 5);
+        audioSource.clip = boom[index];
         audioSource.Play();
     }
     public void PlayFire()

@@ -2504,7 +2504,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 475bdb4b74b92bf448762291c0fc5cda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boom: {fileID: 8300000, guid: 40eca0d093e5540498d3e84472647311, type: 3}
+  boom:
+  - {fileID: 8300000, guid: 2b64b38026caa6c4282572527f1a3b31, type: 3}
+  - {fileID: 8300000, guid: d5e1f1eecf59e504e92eb21109a7037b, type: 3}
+  - {fileID: 8300000, guid: 4953a3ccde824724e8d50cf06632ca6a, type: 3}
+  - {fileID: 8300000, guid: 8659273305c91aa44a637d5b4938e051, type: 3}
+  - {fileID: 8300000, guid: ccaf2c087e33cea4ba64feb8d5fa380f, type: 3}
   fire: {fileID: 8300000, guid: 583f2fd8c0e8385438b60abc194b62b1, type: 3}
 --- !u!82 &1832473623
 AudioSource:
@@ -2823,7 +2828,7 @@ AudioListener:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2012168749}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!124 &2012168751
 Behaviour:
   m_ObjectHideFlags: 0
