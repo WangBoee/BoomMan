@@ -89,7 +89,7 @@ MonoBehaviour:
   - propType: 3
     sprite: {fileID: 21300000, guid: c5ec71a184292ed4cbec0a311988497c, type: 3}
   - propType: 4
-    sprite: {fileID: 21300006, guid: 85eabaa4d070a1d4ca7aecca57abd52b, type: 3}
+    sprite: {fileID: 21300000, guid: 2d70c24e15c790c4f8020113982a2404, type: 3}
 --- !u!212 &212711982365485746
 SpriteRenderer:
   m_ObjectHideFlags: 1
