@@ -160,6 +160,7 @@ public class GameController : MonoBehaviour
     {
         Time.timeScale = 0;
         UIController.Instance.ShowGameOverPanel();
+        GetComponent<AudioSource>().mute = true;
     }
     public void DelMapWallList(Vector2 pos)
     {
