@@ -131,6 +131,10 @@ public class GameController : MonoBehaviour
             playerController.Init(HP, bRange, bCount, 2.0f); //初始化玩家
         }
         playerController.ReSet();
+        if (!isLoads)
+        {
+            playerController.SetBombCount(1+levelCount/3);
+        }
         player.transform.position = mapController.GetPlayerPos();
         if (!isLoads)
         {
