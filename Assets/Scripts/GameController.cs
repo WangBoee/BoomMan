@@ -47,6 +47,7 @@ public class GameController : MonoBehaviour
 
                 throw;
             }
+            Debug.Log("load: " + levelCount + " " + bCount + " " + HP + " " + bRange);
             //-------------------
             LevelController();
             isLoads = false;
@@ -130,7 +131,6 @@ public class GameController : MonoBehaviour
             playerController.Init(HP, bRange, bCount, 2.0f); //初始化玩家
         }
         playerController.ReSet();
-        playerController.SetBombCount(bCount);
         player.transform.position = mapController.GetPlayerPos();
         if (!isLoads)
         {
@@ -212,7 +212,7 @@ public class GameController : MonoBehaviour
         bCount = playerController.bombCount;
         PlayerPrefs.SetInt("level", levelCount);
         PlayerPrefs.SetInt("HP", playerController.HP);
-        PlayerPrefs.SetInt("bCount", bCount == 0 ? bCount : 1);
+        PlayerPrefs.SetInt("bCount", bCount != 0 ? bCount : 1);
         PlayerPrefs.SetInt("bRange", playerController.boomRange);
     }
 }

@@ -14,7 +14,7 @@ public class BombEffect : MonoBehaviour
     //当动画播放完成执行
     private void AnimFinish()
     {
-        Debug.Log("帧事件销毁爆炸特效");
+        //Debug.Log("帧事件销毁爆炸特效");
         ObjPool.Instance.AddObj(ObjectType.BombEffect, gameObject);  //回收炸弹特效
     }
 
