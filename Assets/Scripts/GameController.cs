@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,11 +12,15 @@ public class GameController : MonoBehaviour
     private MapController mapController;
     private int levelCount = 0; //关卡数
     private int enemyCount = 0; //敌人数量
+    private int HP = 3;
+    private int bRange = 1;
+    private int bCount = 1;
     private GameObject player; //主角
     private float timer = 0; //计时器
     public int time = 180;
     public static GameController Instance;
     public GameObject camctrl;
+    public bool isLoads = false;
     void Awake()
     {
         Instance = this;
@@ -23,7 +28,33 @@ public class GameController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        LevelController();
+        //LoadGame();
+        isLoads = StartScene.Instance.GetLoadStatus();
+        bCount = 1 + levelCount / 3;
+        Debug.Log(isLoads);
+        //--------------------
+        if (isLoads)
+        {
+            try
+            {
+                levelCount = PlayerPrefs.GetInt("level");
+                HP = PlayerPrefs.GetInt("HP");
+                bCount = PlayerPrefs.GetInt("bCount");
+                bRange = PlayerPrefs.GetInt("bRange");
+            }
+            catch (System.Exception)
+            {
+
+                throw;
+            }
+            //-------------------
+            LevelController();
+            isLoads = false;
+        }
+        else
+        {
+            LevelController();
+        }
     }
 
     // Update is called once per frame
@@ -96,13 +127,15 @@ public class GameController : MonoBehaviour
         {
             player = GameObject.Instantiate(playerPre);
             playerController = player.GetComponent<PlayerController>();
-            playerController.Init(3, 1, 2.0f); //初始化玩家
+            playerController.Init(HP, bRange, bCount, 2.0f); //初始化玩家
         }
         playerController.ReSet();
-        int bCount = 1 + levelCount / 3;
         playerController.SetBombCount(bCount);
         player.transform.position = mapController.GetPlayerPos();
-        levelCount++; //关卡递增
+        if (!isLoads)
+        {
+            levelCount++; //关卡递增
+        }
         UIController.Instance.PlayLevelFadeAnim(levelCount);
         time = levelCount * 50 + 130;
         GameObject[] effect = GameObject.FindGameObjectsWithTag(Tag.BombEffect);
@@ -173,5 +206,13 @@ public class GameController : MonoBehaviour
     public void MuteMusic()
     {
         GetComponent<AudioSource>().Pause();
+    }
+    public void SaveGame()
+    {
+        bCount = playerController.bombCount;
+        PlayerPrefs.SetInt("level", levelCount);
+        PlayerPrefs.SetInt("HP", playerController.HP);
+        PlayerPrefs.SetInt("bCount", bCount == 0 ? bCount : 1);
+        PlayerPrefs.SetInt("bRange", playerController.boomRange);
     }
 }

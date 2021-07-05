@@ -39,11 +39,12 @@ public class PlayerController : MonoBehaviour
         }
     }
     //玩家初始化
-    public void Init(int hp, int bRange, float bTime)
+    public void Init(int hp, int bRange, int bCount, float bTime)
     {
         this.HP = hp;
         boomRange = bRange;
         boomTime = bTime;
+        bombCount = bCount;
     }
     public void SetBombCount(int count)
     {

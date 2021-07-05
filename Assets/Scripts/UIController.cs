@@ -81,6 +81,8 @@ public class UIController : MonoBehaviour
     public void ReturnMenu()
     {
         Time.timeScale = 1;
+        //PlayerPrefs.SetInt()
+        GameController.Instance.SaveGame();
         SceneManager.LoadScene(0);
     }
     public void MusicCtrl()

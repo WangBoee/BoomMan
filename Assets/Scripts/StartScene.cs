@@ -13,9 +13,13 @@ public class StartScene : MonoBehaviour
     public Image musicImg;
     public Sprite muteSprite;
     public Sprite playSprite;
+    public Text tips;
     private bool isMute;
-    void Update()
+    private bool isLoad = false;
+    public static StartScene Instance;
+    void Awake()
     {
+        Instance = this;
     }
     public void StartGame()
     {
@@ -50,5 +54,25 @@ public class StartScene : MonoBehaviour
             audioCtrl.GetComponent<AudioSource>().mute = true;
             musicImg.sprite = muteSprite;
         }
+    }
+    public void SetLoadStatus(bool status = true)
+    {
+        if (PlayerPrefs.GetInt("level") == 0)
+        {
+            StartCoroutine(Tips());
+            return;
+        }
+        isLoad = status;
+        SceneManager.LoadScene(1);
+    }
+    public bool GetLoadStatus()
+    {
+        return isLoad;
+    }
+    IEnumerator Tips()
+    {
+        tips.text = "无存档";
+        yield return new WaitForSeconds(2.0f);
+        tips.text = "";
     }
 }
