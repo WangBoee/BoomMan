@@ -25,6 +25,27 @@ public class Bomb : MonoBehaviour
     {
 
     }
+    //private void OnTriggerEnter2D(Collider2D col)
+    //{
+    //    if (CompareTag(Tag.Player))
+    //    {
+    //        GetComponent<CircleCollider2D>().isTrigger = true;
+    //    }
+    //}
+    private void OnTriggerStay2D(Collider2D col)
+    {
+        if (col.CompareTag(Tag.Player))
+        {
+            GetComponent<CircleCollider2D>().isTrigger = true;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.CompareTag(Tag.Player))
+        {
+            GetComponent<CircleCollider2D>().isTrigger = false;
+        }
+    }
     //延时爆炸
     IEnumerator DelayBoom(float time)
     {
@@ -45,6 +66,7 @@ public class Bomb : MonoBehaviour
         Boom(Vector2.up); //向上
         Boom(Vector2.down); //向下
         //Destroy(gameObject);	//销毁炸弹
+        gameObject.GetComponent<CircleCollider2D>().isTrigger = true;
         ObjPool.Instance.AddObj(ObjectType.Bomb, gameObject); //回收炸弹
     }
     //生成爆炸特效，爆炸点周围四个方向

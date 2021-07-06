@@ -64,6 +64,7 @@ public class PlayerController : MonoBehaviour
             AudioController.Instance.PlayFire(); //播放音效
             Vector2 pos = new Vector2(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y));
             GameObject bomb = ObjPool.Instance.GetObj(ObjectType.Bomb, pos);
+            bomb.GetComponent<CircleCollider2D>().isTrigger = true;
             bombCount--;
             if (bomb != null)
             {
